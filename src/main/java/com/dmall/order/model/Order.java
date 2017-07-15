@@ -7,6 +7,8 @@ public class Order {
 
   private String productId;
 
+  private String goodsId;
+
 
   private Product product;
   private Shipping shipping;
@@ -16,9 +18,10 @@ public class Order {
 
   }
 
-  public Order(String orderId, String productId) {
+  public Order(String orderId, String productId, String goodsId) {
     this.orderId = orderId;
     this.productId = productId;
+    this.goodsId = goodsId;
   }
 
   public String getOrderId() {
@@ -51,5 +54,13 @@ public class Order {
 
   public void setProductId(String productId) {
     this.productId = productId;
+  }
+
+  public String getGoodsId() {
+    return goodsId;
+  }
+
+  public void setGoodsId(String goodsId) {
+    this.goodsId = goodsId;
   }
 }

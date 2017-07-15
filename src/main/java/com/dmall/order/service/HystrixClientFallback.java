@@ -10,7 +10,7 @@ import java.util.Date;
 public class HystrixClientFallback implements ProductService {
 
     @Override
-    public Product getProductDetial(@PathVariable("doctorId") String doctorId) {
-        return new Product("default", "default doctor", new Date());
+    public Product getProductDetial(@PathVariable("productId") String productId) {
+        return new Product("default", "default", new Date());
     }
 }

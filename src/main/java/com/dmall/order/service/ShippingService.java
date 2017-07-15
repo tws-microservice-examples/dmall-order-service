@@ -17,7 +17,7 @@ public class ShippingService {
 
     @HystrixCommand(fallbackMethod = "fallback", commandProperties = {
         @HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE"),
-        @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),
+        @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "1000"),
         @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "1000")})
     public Shipping getShippingDetail(String goodsId) {
         String url = String.format("http://shipping-service/goods/%s", goodsId);
@@ -28,6 +28,6 @@ public class ShippingService {
     @SuppressWarnings("unused")
     private Shipping fallback(String goodsId) {
 
-        return new Shipping("default", "default appointment", "默认仓库", "默认地址", new Date());
+        return new Shipping("default", "默认仓库", "默认地址", new Date());
     }
 }

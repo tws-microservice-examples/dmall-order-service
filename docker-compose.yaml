@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  dmall-registry-server:
+      image: 10.204.21.177:5000/dmall/order-service:latest
+      mem_limit: 512m
+      networks:
+          - jenkins_dmall-network
+      ports:
+          - "8084:8084"
+
+networks:
+  jenkins_dmall-network:
+    external: true

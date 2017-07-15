@@ -28,7 +28,7 @@ public class Shipping {
 
   }
 
-  public Shipping(String goodsId, String comment, String warehouse, String address, Date posted) {
+  public Shipping(String goodsId, String warehouse, String address, Date posted) {
     super();
     this.goodsId = goodsId;
     this.warehouse = warehouse;

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,8 +27,8 @@ public class OrderController {
   private ShippingService shippingService;
 
   private List<Order> orders = Arrays.asList(
-      new Order("o001", "p001"),
-      new Order("o002", "p002"));
+      new Order("o001", "p001", "g001"),
+      new Order("o002", "p002", "g002"));
 
   public OrderController() throws ParseException {
 
@@ -53,7 +52,7 @@ public class OrderController {
     if (orderToReturn != null) {
       Product product = this.productService.getProductDetial(orderToReturn.getProductId());
       orderToReturn.setProduct(product);
-      Shipping shipping = shippingService.getShippingDetail(orderToReturn.getProductId());
+      Shipping shipping = shippingService.getShippingDetail(orderToReturn.getGoodsId());
       orderToReturn.setShipping(shipping);
     }
 
