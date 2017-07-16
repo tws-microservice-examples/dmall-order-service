@@ -31,4 +31,8 @@ node{
     stage('Docker image') {
         sh './genImages.sh'
     }
+
+    stage('Deploy to DEV') {
+        sh './deployToDEV.sh'
+    }
 }
