@@ -2,7 +2,7 @@ version: '2'
 
 services:
   dmall-registry-server:
-      image: dmall-docker-registry:5000/dmall/order-service:latest
+      image: dmall-docker-registry:5000/dmall/order-service:$BUILD_NUMBER
       mem_limit: 752m
       networks:
           - jenkins_dmall-network
