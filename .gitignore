@@ -4,3 +4,5 @@
 /.settings/
 /.gradle/
 /classes/
+.classpath
+.project

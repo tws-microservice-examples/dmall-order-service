@@ -1,0 +1,7 @@
+version: '2'
+
+services:
+  dmall-registry-server:
+    image: ec2-54-223-92-91.cn-north-1.compute.amazonaws.com.cn:5000/dmall/order-service:$BUILD_NUMBER
+    ports:
+      - "8084:8084"

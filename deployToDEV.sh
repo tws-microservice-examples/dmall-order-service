@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-docker-compose down
-docker-compose up -d
+rancher-compose down
+rancher-compose up -d
