@@ -1,6 +1,6 @@
 buildscript {
 	project.ext {
-        bootVersion = '1.4.4.RELEASE'
+        bootVersion = '1.5.9.RELEASE'
         cloudVersion = '1.1.0.RELEASE'
         seurityVersion = '2.0.8.RELEASE'
     }

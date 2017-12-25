@@ -4,11 +4,7 @@ import com.dmall.order.domain.common.DomainEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.Entity;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import java.time.ZonedDateTime;
 
@@ -26,8 +22,8 @@ public class Order implements DomainEntity<Long> {
     @Enumerated(STRING)
     private OrderStatus orderStatus = OrderStatus.NOT_COMPLETED;
 
-//    @CreatedDate
-//    private ZonedDateTime createdDate = ZonedDateTime.now();
+    @CreatedDate
+    private ZonedDateTime createdDate = ZonedDateTime.now();
 
     public Order() {
     }
