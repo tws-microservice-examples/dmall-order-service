@@ -1,0 +1,22 @@
+server:
+  port: 8084
+
+spring:
+  profiles:
+    active: local
+  datasource:
+    url: jdbc:h2:mem:testData;MODE=MySQL;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  h2:
+    console:
+      enabled: true
+logging.level.project.user.UserClient: DEBUG
+
+eureka:
+  client:
+    enabled: false
