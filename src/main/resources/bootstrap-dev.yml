@@ -1,0 +1,4 @@
+spring:
+  cloud:
+    config:
+      uri: http://dmall-config-server-dmall-config-server-1:8888

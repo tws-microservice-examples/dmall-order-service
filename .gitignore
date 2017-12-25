@@ -6,3 +6,6 @@
 /classes/
 .classpath
 .project
+*.ipr
+*.iml
+*.iws
