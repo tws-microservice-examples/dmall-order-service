@@ -1,4 +1,0 @@
-spring:
-  product-service:
-    ribbon:
-      listOfServers: localhost:8083

@@ -31,3 +31,8 @@ With example Data
 
 3.Get Created Resource with API
 > http://localhost:8084/api/orders/1
+
+Run API Server with DB H2 Included:
+>gradle clean build
+
+>java -jar build/libs/order-service-0.0.1.jar  --spring.profiles.active=local
