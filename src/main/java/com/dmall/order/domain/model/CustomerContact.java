@@ -1,19 +1,17 @@
-package com.dmall.order.domain.order;
-
+package com.dmall.order.domain.model;
 
 import com.dmall.order.domain.common.ValueObject;
-
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class Customer implements ValueObject<Customer> {
+public class CustomerContact implements ValueObject<CustomerContact> {
     private String name;
     private Address address;
 
-    public Customer() {
+    public CustomerContact() {
     }
 
-    public Customer(String name, Address address) {
+    public CustomerContact(String name, Address address) {
         this.name = name;
         this.address = address;
     }
@@ -27,7 +25,7 @@ public class Customer implements ValueObject<Customer> {
     }
 
     @Override
-    public boolean sameValueAs(Customer other) {
+    public boolean sameValueAs(CustomerContact other) {
         return other.name.equals(name)
                 && other.address.sameValueAs(address);
     }

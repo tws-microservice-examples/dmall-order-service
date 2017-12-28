@@ -1,4 +1,4 @@
-package com.dmall.order.domain.order;
+package com.dmall.order.domain.model.query;
 
 public enum OrderStatus {
     NOT_COMPLETED,

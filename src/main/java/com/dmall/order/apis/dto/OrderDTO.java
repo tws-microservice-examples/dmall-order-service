@@ -1,10 +1,10 @@
 package com.dmall.order.apis.dto;
 
 
-import com.dmall.order.domain.order.Address;
-import com.dmall.order.domain.order.Customer;
-import com.dmall.order.domain.order.Pet;
-import com.dmall.order.domain.order.Shop;
+//import com.dmall.order.domain.order.Address;
+//import com.dmall.order.domain.order.Customer;
+//import com.dmall.order.domain.order.Pet;
+//import com.dmall.order.domain.order.Shop;
 
 public final class OrderDTO {
     private String name;
@@ -19,25 +19,25 @@ public final class OrderDTO {
     private String brand;
     private String petId;
 
-    public Pet getPet() {
-        return new Pet(getPrice(), getAmount(), getDescription(), getPetId());
-    }
-
-    public Shop getShop() {
-        return new Shop(getBrand());
-    }
-
-    public Customer getCustomer() {
-        return new Customer(getName(), getAddress());
-    }
-
-    private Address getAddress() {
-        return new Address(getProvince(),
-                    getCity(),
-                    getArea(),
-                    getStreet(),
-                    getMoreDetails());
-    }
+//    public Pet getPet() {
+//        return new Pet(getPrice(), getAmount(), getDescription(), getPetId());
+//    }
+//
+//    public Shop getShop() {
+//        return new Shop(getBrand());
+//    }
+//
+//    public Customer getCustomer() {
+//        return new Customer(getName(), getAddress());
+//    }
+//
+//    private Address getAddress() {
+//        return new Address(getProvince(),
+//                    getCity(),
+//                    getArea(),
+//                    getStreet(),
+//                    getMoreDetails());
+//    }
 
     public String getName() {
         return name;

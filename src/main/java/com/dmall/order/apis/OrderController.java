@@ -1,68 +1,40 @@
 package com.dmall.order.apis;
 
-import com.dmall.order.model.Order;
-import com.dmall.order.model.Product;
-import com.dmall.order.model.Shipping;
-import com.dmall.order.service.ProductService;
-import com.dmall.order.service.ShippingService;
+import com.dmall.order.apis.common.ApiForRequest;
+import com.dmall.order.apis.common.ApiForResponse;
+import com.dmall.order.apis.common.HttpFacadeBaseClass;
+import com.dmall.order.apis.dto.OrderDTO;
+import com.dmall.order.apis.dto.OrderSimpleDTO;
+import com.dmall.order.domain.model.OrderRepository;
+import com.dmall.order.domain.model.query.Order;
+import com.dmall.order.domain.model.query.OrderQueryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.text.ParseException;
-import java.util.Arrays;
-import java.util.List;
+import static java.lang.String.format;
+import static java.net.URI.create;
 
 @RestController
-@RequestMapping("/")
-public class OrderController {
+@RequestMapping("/api/v1/orders")
+public class OrderController extends HttpFacadeBaseClass {
 
-  @Autowired
-  private ProductService productService;
+    private OrderQueryRepository orderQueryRepository;
 
 
-  @Autowired
-  private ShippingService shippingService;
-
-  private List<Order> orders = Arrays.asList(
-      new Order("o001", "p001", "g001"),
-      new Order("o002", "p002", "g002"));
-
-  public OrderController() throws ParseException {
-
-  }
-
-  @RequestMapping(method = RequestMethod.GET, headers = "Accept=application/json")
-  public List<Order> getOrders() {
-    return orders;
-  }
-
-  @RequestMapping(value = "{orderId}", method = RequestMethod.GET, headers = "Accept=application/json")
-  public Order getTaskByTaskId(@PathVariable("orderId") String orderId) {
-    Order orderToReturn = null;
-    for (Order order : orders) {
-      if (order.getOrderId().equalsIgnoreCase(orderId)) {
-        orderToReturn = order;
-        break;
-      }
+    @Autowired
+    public OrderController(OrderQueryRepository orderRepository) {
+        this.orderQueryRepository = orderRepository;
     }
 
-    if (orderToReturn != null) {
-      Product product = this.productService.getProductDetial(orderToReturn.getProductId());
-      orderToReturn.setProduct(product);
-      Shipping shipping = shippingService.getShippingDetail(orderToReturn.getGoodsId());
-      orderToReturn.setShipping(shipping);
+    @GetMapping("/{id}")
+    public final ApiForResponse<Order> findById(@PathVariable("id") final long id) {
+        Order order = orderQueryRepository.findOne(id);
+
+        //orika
+        ApiForResponse<Order> orderApiForResponse = new ApiForResponse<>(order.getId(), order);
+        return orderApiForResponse;
     }
-
-    return orderToReturn;
-  }
-
-
-  @RequestMapping(value = "shippings/{goodsId}", method = RequestMethod.GET, headers = "Accept=application/json")
-  public Shipping getPatientById(@PathVariable("goodsId") String goodsId) {
-
-    return shippingService.getShippingDetail(goodsId);
-  }
 }
+

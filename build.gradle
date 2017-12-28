@@ -5,12 +5,12 @@ buildscript {
         seurityVersion = '2.0.8.RELEASE'
     }
     repositories {
-        mavenCentral()
-        jcenter()
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
     }
     
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${project.bootVersion}"
+
     }
 }
 
@@ -26,10 +26,10 @@ jar {
     version =  '0.0.1'
 }
 
-repositories { 
-	mavenCentral() 
-	jcenter()
+repositories {
+    maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
 }
+
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-actuator")

@@ -1,5 +1,4 @@
-package com.dmall.order.domain.order;
-
+package com.dmall.order.domain.model;
 
 import com.dmall.order.domain.common.ValueObject;
 
