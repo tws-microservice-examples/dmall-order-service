@@ -14,11 +14,16 @@ public class OrderItem implements ValueObject<OrderItem> {
 //
 //    private Long skuSnapshotId;
 //    private double price;
-//    private Integer amount;
+
+    private Integer amount;
 
     @ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="ORDER_ID")
     private Order order;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="SKU_SNAPSHOT_ID")
+    private SkuSnapShot skuSnapShot;
 
     public OrderItem() {
     }
@@ -27,12 +32,16 @@ public class OrderItem implements ValueObject<OrderItem> {
 //        this.amount = amount;
 //    }
 //
-//    public Integer getAmount() {
-//        return amount;
-//    }
+    public Integer getAmount() {
+        return amount;
+    }
 
     @Override
     public boolean sameValueAs(OrderItem other) {
         return other.id.equals(id);
+    }
+
+    public SkuSnapShot getSkuSnapShot() {
+        return skuSnapShot;
     }
 }

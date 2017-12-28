@@ -1,7 +1,7 @@
-CREATE TABLE `jx_order_item` (
+CREATE TABLE `jx_sku_snapshot` (
   `id`                 BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `ORDER_ID` BIGINT,
-  `amount` BIGINT,
-  `sku_snapshot_id` BIGINT,
+  `ORDER_ITEM_ID` BIGINT,
+  `price`  DOUBLE  NOT NULL,
+  `sku_Id` BIGINT,
   `created_date` TIMESTAMP DEFAULT NOW()
 );

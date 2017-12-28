@@ -1,0 +1,1 @@
+insert into jx_sku_snapshot(ORDER_ITEM_ID, price, sku_Id) values(1, 2.00, 1)

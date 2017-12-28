@@ -1,25 +1,36 @@
 package com.dmall.order.domain.model.query;
 
 import com.dmall.order.domain.common.ValueObject;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 
-@Embeddable
+@Entity(name = "jx_sku_snapshot")
 public class SkuSnapShot implements ValueObject<SkuSnapShot> {
-    private String skuId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonIgnore
+    private Long id;
+
+    public Long getSkuId() {
+        return skuId;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    private Long skuId;
     private double price;
     //
 
-    public SkuSnapShot(String skuId, double price) {
-        this.skuId = skuId;
-        this.price = price;
+    public SkuSnapShot(){
+
     }
 
-    public String getSkuId() {
-        return skuId;
-    }
-    
-    //
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name="ORDER_ITEM_ID")
+    private OrderItem orderItem;
 
     @Override
     public boolean sameValueAs(SkuSnapShot other) {
