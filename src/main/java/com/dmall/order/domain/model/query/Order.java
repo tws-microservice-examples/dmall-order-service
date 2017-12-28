@@ -11,7 +11,7 @@ import java.util.List;
 
 import static javax.persistence.EnumType.STRING;
 
-@javax.persistence.Entity(name = "jx_order")
+@Entity(name = "jx_order")
 public class Order implements DomainEntity<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,8 +21,6 @@ public class Order implements DomainEntity<Long> {
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="Customer_Contact_ID")
     private CustomerContact customerContact;
-//    @Enumerated(STRING)
-//    private OrderStatus orderStatus = OrderStatus.NOT_COMPLETED;
 
     @OneToMany(cascade=CascadeType.ALL, mappedBy="order")
     private List<OrderItem> orderItems = new ArrayList<>();
@@ -30,13 +28,15 @@ public class Order implements DomainEntity<Long> {
     @CreatedDate
     private ZonedDateTime createdDate = ZonedDateTime.now();
 
+    @Transient
+    private List<OrderEvent> orderEvents = new ArrayList<>();
+
     public Order() {
     }
 
-    public Order(CustomerContact customerContact, List<Long> orderItemIds) {
-//        this.customerContact = customerContact;
-//        this.orderItemIds = orderItemIds;
 
+    public void apply(List<OrderEvent> orderEvents) {
+        this.orderEvents = orderEvents;
     }
 
     @Override
@@ -48,11 +48,6 @@ public class Order implements DomainEntity<Long> {
         this.id = id;
     }
 
-
-//    public OrderStatus getOrderStatus() {
-//        return orderStatus;
-//    }
-
     @Override
     public boolean sameIdentityAs(Long otherId) {
         return this.id.equals(otherId);
@@ -63,20 +58,15 @@ public class Order implements DomainEntity<Long> {
         return orderItems;
     }
 
-    public void setOrderItems(List<OrderItem> orderItems) {
-        this.orderItems = orderItems;
-    }
-
     public CustomerContact getCustomerContact() {
         return customerContact;
     }
 
-    public void setCustomerContact(CustomerContact customerContact) {
-        this.customerContact = customerContact;
+    public OrderStatus getStatus(){
+        OrderEvent orderEvent = this.orderEvents.get(orderEvents.size() - 1);
+
+        return OrderStatus.getByOrderEvent(orderEvent);
     }
 
-//    public CustomerContact getCustomerContact() {
-//        return customerContact;
-//    }
 
 }
