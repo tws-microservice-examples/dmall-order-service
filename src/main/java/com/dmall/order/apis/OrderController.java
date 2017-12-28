@@ -1,44 +1,40 @@
 package com.dmall.order.apis;
 
-import com.dmall.order.apis.common.ApiForRequest;
 import com.dmall.order.apis.common.ApiForResponse;
 import com.dmall.order.apis.common.HttpFacadeBaseClass;
-import com.dmall.order.apis.dto.OrderDTO;
-import com.dmall.order.apis.dto.OrderSimpleDTO;
-import com.dmall.order.domain.model.OrderRepository;
+import com.dmall.order.apis.dto.OrderWithoutItemsDTO;
 import com.dmall.order.domain.model.query.Order;
+import com.dmall.order.domain.model.query.OrderBrief;
 import com.dmall.order.domain.model.query.OrderEvent;
 import com.dmall.order.domain.model.query.OrderQueryRepository;
+import com.dmall.order.domain.service.OrderQueryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 import static java.lang.String.format;
-import static java.net.URI.create;
 
 @RestController
 @RequestMapping("/api/v1/orders")
 public class OrderController extends HttpFacadeBaseClass {
 
     private OrderQueryRepository orderQueryRepository;
+    private OrderQueryService orderQueryService;
 
 
     @Autowired
-    public OrderController(OrderQueryRepository orderRepository) {
-        this.orderQueryRepository = orderRepository;
+    public OrderController(OrderQueryService orderQueryService) {
+        this.orderQueryService = orderQueryService;
     }
 
     @GetMapping("/{id}")
-    public final ApiForResponse<Order> findById(@PathVariable("id") final long id) {
-        Order order = orderQueryRepository.findOne(id);
-        List<OrderEvent> orderEvents = orderQueryRepository.findAllOrderEventsByOrderId(id);
-        order.apply(orderEvents);
+    public final ApiForResponse<OrderWithoutItemsDTO> findById(@PathVariable("id") final long id) {
+        OrderBrief order = orderQueryService.findOrderBriefById(id);
+        OrderWithoutItemsDTO orderWithoutItemsDTO = new OrderWithoutItemsDTO(order);
+        orderWithoutItemsDTO.setOrderItems(String.format("/api/v1/orders/%d/orderItems", order.getId()));
 
-        //orika
-        ApiForResponse<Order> orderApiForResponse = new ApiForResponse<>(order.getId(), order);
+        ApiForResponse<OrderWithoutItemsDTO> orderApiForResponse = new ApiForResponse<>(order.getId(), orderWithoutItemsDTO);
         return orderApiForResponse;
     }
 

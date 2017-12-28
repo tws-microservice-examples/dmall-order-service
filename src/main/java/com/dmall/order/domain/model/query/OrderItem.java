@@ -5,7 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
-@Entity(name = "jx_order_item")
+@Table(name="jx_order_item")
+@Entity
 public class OrderItem implements ValueObject<OrderItem> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
