@@ -3,5 +3,11 @@ version: '2'
 services:
   dmall-order-service:
     image: ec2-54-223-92-91.cn-north-1.compute.amazonaws.com.cn:5000/dmall/order-service:$BUILD_NUMBER
+    environment:
+      ACTIVE_PROFILE: dev
     ports:
       - "8084:8084"
+    external_links:
+      - dmall-config-server/dmall-config-server:dmall-config-server
+      - dmall-registry-server/dmall-registry-server:dmall-registry-server
+    
