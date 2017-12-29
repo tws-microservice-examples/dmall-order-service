@@ -6,7 +6,7 @@ node{
 
     stage('Checkout') {
         step([$class: 'WsCleanup'])
-        git url: 'git@gitee.com:tws-micro-service/dmall-order-service.git', branch: 'master'
+        git credentialsId: 'git-viewer', url: 'git@gitee.com:tws-micro-service/dmall-order-service.git', branch: 'master'
     }
 
     stage('Build') {
