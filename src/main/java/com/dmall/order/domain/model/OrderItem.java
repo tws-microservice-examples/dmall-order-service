@@ -14,6 +14,14 @@ public class OrderItem implements ValueObject<OrderItem> {
     private Long id;
 
 
+    public void setAmount(Integer amount) {
+        this.amount = amount;
+    }
+
+    public void setSkuSnapShot(SkuSnapShot skuSnapShot) {
+        this.skuSnapShot = skuSnapShot;
+    }
+
     private Integer amount;
 
     public Order getOrder() {
@@ -27,6 +35,10 @@ public class OrderItem implements ValueObject<OrderItem> {
     @ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="ORDER_ID")
     private Order order;
+
+    public SkuSnapShot getSkuSnapShot() {
+        return skuSnapShot;
+    }
 
     @OneToOne(cascade=CascadeType.ALL, mappedBy = "orderItem",fetch = FetchType.EAGER)
     private SkuSnapShot skuSnapShot;

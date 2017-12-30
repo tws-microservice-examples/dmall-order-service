@@ -13,8 +13,21 @@ public class SkuSnapShot implements ValueObject<SkuSnapShot> {
     @JsonIgnore
     private Long id;
 
+    public void setSkuId(Long skuId) {
+        this.skuId = skuId;
+    }
+
     private Long skuId;
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     private double price;
+
+    public void setOrderItem(OrderItem orderItem) {
+        this.orderItem = orderItem;
+    }
 
     @OneToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="ORDER_ITEM_ID")

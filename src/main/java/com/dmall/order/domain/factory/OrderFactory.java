@@ -17,6 +17,7 @@ public class OrderFactory {
         result.setOrderItems(orderCommandDTO.getOrderItems());
         result.getOrderItems().stream().forEach(orderItem -> {
             orderItem.setOrder(result);
+            orderItem.getSkuSnapShot().setOrderItem(orderItem);
         });
 
         OrderEvent orderEvent = new OrderEvent();
