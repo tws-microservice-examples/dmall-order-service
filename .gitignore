@@ -10,3 +10,4 @@
 *.iml
 *.iws
 .DS_Store
+merge.sh
