@@ -4,7 +4,7 @@
 > ./gradlew bootRun
 
 2.Call Post API
-> http://localhost:8084/api/v1/orders/
+> http://localhost:8084/api/v1/orders
 
 With example Data
 
