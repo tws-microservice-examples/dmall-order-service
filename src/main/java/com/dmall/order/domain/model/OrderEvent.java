@@ -1,6 +1,6 @@
 package com.dmall.order.domain.model;
 
-import com.dmall.order.domain.model.query.Order;
+import com.dmall.order.domain.model.Order;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 public class OrderEvent {
 
-    enum Values{
+    public enum Values{
         CREATED
     }
 
@@ -18,9 +18,21 @@ public class OrderEvent {
     @JsonIgnore
     private Long id;
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     private String name;
 
     private Long ticketId;
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 
     @ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="ORDER_ID")

@@ -1,1 +1,1 @@
-insert into jx_order_event(ORDER_ID, TICKET_ID, name) values(1, 1, 'CREATED')
+insert into jx_order_event(ORDER_ID, TICKET_ID, name) values(1, 0, 'CREATED')

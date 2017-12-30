@@ -5,8 +5,8 @@ public enum OrderStatus {
     COMPLETED,
     Cancled;
 
-    public static OrderStatus getByOrderEvent(OrderEvent orderEvent) {
-        if(OrderEvent.Values.CREATED.name().equals(orderEvent.getName())){
+    public static OrderStatus getByOrderEvent(OrderEventRead orderEventRead) {
+        if(OrderEventRead.Values.CREATED.name().equals(orderEventRead.getName())){
             return NOT_COMPLETED;
         }
         return Cancled;

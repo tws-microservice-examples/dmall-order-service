@@ -27,14 +27,14 @@ public class OrderBrief implements DomainEntity<Long> {
     private ZonedDateTime createdDate = ZonedDateTime.now();
 
     @Transient
-    private List<OrderEvent> orderEvents = new ArrayList<>();
+    private List<OrderEventRead> orderEventReads = new ArrayList<>();
 
     public OrderBrief() {
     }
 
 
-    public void apply(List<OrderEvent> orderEvents) {
-        this.orderEvents = orderEvents;
+    public void apply(List<OrderEventRead> orderEventReads) {
+        this.orderEventReads = orderEventReads;
     }
 
     @Override
@@ -61,9 +61,9 @@ public class OrderBrief implements DomainEntity<Long> {
     }
 
     public OrderStatus getStatus(){
-        OrderEvent orderEvent = this.orderEvents.get(orderEvents.size() - 1);
+        OrderEventRead orderEventRead = this.orderEventReads.get(orderEventReads.size() - 1);
 
-        return OrderStatus.getByOrderEvent(orderEvent);
+        return OrderStatus.getByOrderEvent(orderEventRead);
     }
 
 

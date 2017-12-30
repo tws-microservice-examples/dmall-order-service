@@ -6,6 +6,7 @@ import com.dmall.order.apis.dto.OrderWithoutItemsDTO;
 import com.dmall.order.domain.model.query.OrderBrief;
 import com.dmall.order.domain.service.OrderQueryService;
 import com.dmall.order.z.debug.infrastructure.persistent.CustomerContactRepositoryDebug;
+import com.dmall.order.z.debug.infrastructure.persistent.OrderEventRepositoryDebug;
 import com.dmall.order.z.debug.infrastructure.persistent.OrderRepositoryDebug;
 import com.dmall.order.z.debug.infrastructure.persistent.SkuRepositoryDebug;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -25,16 +26,19 @@ public class OrderDebugController extends HttpFacadeBaseClass {
     private OrderRepositoryDebug orderRepositoryDebug;
     private SkuRepositoryDebug skuRepositoryDebug;
     private CustomerContactRepositoryDebug customerContactRepository;
-
+    private OrderEventRepositoryDebug orderEventRepositoryDebug;
 
     @Autowired
     public OrderDebugController(OrderQueryService orderQueryService,
                                 OrderRepositoryDebug orderRepositoryDebug,
-                                SkuRepositoryDebug skuRepositoryDebug, CustomerContactRepositoryDebug customerContactRepository) {
+                                SkuRepositoryDebug skuRepositoryDebug,
+                                CustomerContactRepositoryDebug customerContactRepository,
+                                OrderEventRepositoryDebug orderEventRepositoryDebug) {
         this.orderQueryService = orderQueryService;
         this.orderRepositoryDebug = orderRepositoryDebug;
         this.skuRepositoryDebug = skuRepositoryDebug;
         this.customerContactRepository = customerContactRepository;
+        this.orderEventRepositoryDebug = orderEventRepositoryDebug;
     }
 
     @Transactional
@@ -49,6 +53,8 @@ public class OrderDebugController extends HttpFacadeBaseClass {
             order.getOrderItes().stream().forEach(orderIte -> ToStringBuilder.reflectionToString(orderIte));
         });
         skuRepositoryDebug.findAll().forEach(skuSnapShot -> System.out.println("skuId: "+skuSnapShot.getSkuId()));
+
+        orderEventRepositoryDebug.findAll().forEach(orderEvent -> System.out.println("orderEvent:" + ToStringBuilder.reflectionToString(orderEvent)));
 
         OrderBrief order = orderQueryService.findOrderBriefById(id);
 

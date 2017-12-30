@@ -14,7 +14,6 @@ import com.dmall.order.domain.service.OrderQueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -62,7 +61,7 @@ public class OrderController extends HttpFacadeBaseClass {
     @PostMapping(path="",  produces = MediaType.APPLICATION_JSON_VALUE)
     public ApiForResponse<OrderCreatedResponseDTO> createOrder(@RequestBody OrderCommandDTO orderRequest) {
 
-        Order order = orderFactory.createOrderEntity(orderRequest);
+        Order order = orderFactory.createNewOrderEntity(orderRequest);
 
         Order savedOrder = orderRepository.save(order);
 

@@ -14,5 +14,5 @@ public interface OrderBriefQueryRepository {
 
     OrderBrief findOne(Long id);
 
-    List<OrderEvent> findAllOrderEventsByOrderId(Long id);
+    List<OrderEventRead> findAllOrderEventsByOrderId(Long id);
 }

@@ -34,9 +34,9 @@ public class OrderWithoutItemsDTO {
         return createdDate;
     }
 
-//    public OrderStatus getStatus() {
-//        return status;
-//    }
+    public OrderStatus getStatus() {
+        return status;
+    }
 
 
 
@@ -44,7 +44,7 @@ public class OrderWithoutItemsDTO {
         this.id = order.getId();
         this.customerContact = order.getCustomerContact();
         this.createdDate = order.getCreatedDate().toString();
-//        this.status = order.getStatus();
+        this.status = order.getStatus();
 
     }
 

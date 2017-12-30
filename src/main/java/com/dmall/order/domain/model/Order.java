@@ -39,16 +39,12 @@ public class Order implements DomainEntity<Long> {
     @CreatedDate
     private ZonedDateTime createdDate = ZonedDateTime.now();
 
-    @Transient
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="order")
     private List<OrderEvent> orderEvents = new ArrayList<>();
 
     public Order() {
     }
 
-
-    public void apply(List<OrderEvent> orderEvents) {
-        this.orderEvents = orderEvents;
-    }
 
     @Override
     public Long getId() {
@@ -69,10 +65,12 @@ public class Order implements DomainEntity<Long> {
         return orderItes;
     }
 
-//    public CustomerContact getCustomerContact() {
+    //    public CustomerContact getCustomerContact() {
 //        return customerContact;
 //    }
 
-
+    public void addEvent(OrderEvent orderEvent) {
+        this.orderEvents.add(orderEvent);
+    }
 
 }

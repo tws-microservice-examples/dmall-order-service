@@ -13,8 +13,8 @@ public interface OrderBriefQueryRepositoryImpl extends OrderBriefQueryRepository
 
 
     @Override
-    @Query("select oe from OrderEvent oe where oe.order.id =?1")
-    List<OrderEvent> findAllOrderEventsByOrderId(Long id);
+    @Query("select oe from OrderEventRead oe where oe.order.id =?1")
+    List<OrderEventRead> findAllOrderEventsByOrderId(Long id);
 
     @Override
     @Query("select oe from OrderItemRead oe where oe.order.id =?1 ORDER BY oe.id DESC")

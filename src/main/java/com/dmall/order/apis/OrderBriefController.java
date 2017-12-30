@@ -34,11 +34,11 @@ public class OrderBriefController extends HttpFacadeBaseClass {
 
 
 //    @GetMapping("/{id}/events")
-//    public final ApiForResponse<OrderEvent> findEventsById(@PathVariable("id") final long id) {
-//        List<OrderEvent> orderEvents = orderQueryRepository.findAllOrderEventsByOrderId(id);
+//    public final ApiForResponse<OrderEventRead> findEventsById(@PathVariable("id") final long id) {
+//        List<OrderEventRead> orderEvents = orderQueryRepository.findAllOrderEventsByOrderId(id);
 //
 //        //orika
-//        ApiForResponse<OrderEvent> orderApiForResponse = new ApiForResponse<>(1L, orderEvents.get(0));
+//        ApiForResponse<OrderEventRead> orderApiForResponse = new ApiForResponse<>(1L, orderEvents.get(0));
 //        return orderApiForResponse;
 //    }
 }

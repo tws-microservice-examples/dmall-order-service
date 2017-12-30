@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Table(name="jx_order_event")
 @Entity
-public class OrderEvent {
+public class OrderEventRead {
 
     enum Values{
         CREATED

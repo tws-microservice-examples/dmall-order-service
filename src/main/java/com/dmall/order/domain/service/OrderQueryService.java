@@ -21,16 +21,16 @@ public class OrderQueryService {
     public OrderBrief findOrderBriefById(Long id){
 
         OrderBrief one = orderBriefQueryRepository.findOne(id);
-        List<OrderEvent> orderEvents = orderBriefQueryRepository.findAllOrderEventsByOrderId(id);
-        one.apply(orderEvents);
+        List<OrderEventRead> orderEventReads = orderBriefQueryRepository.findAllOrderEventsByOrderId(id);
+        one.apply(orderEventReads);
 
         return one;
     }
 
     public OrderBrief findOrderBriefWithDetailById(Long id) {
         OrderBrief one = orderBriefQueryRepository.findOne(id);
-        List<OrderEvent> orderEvents = orderBriefQueryRepository.findAllOrderEventsByOrderId(id);
-        one.apply(orderEvents);
+        List<OrderEventRead> orderEventReads = orderBriefQueryRepository.findAllOrderEventsByOrderId(id);
+        one.apply(orderEventReads);
 
         Pageable pageable = new PageRequest(0,2);
         Page<OrderItemRead> orderItemsPage = orderBriefQueryRepository.findOrderItemsByOrderId(one.getId(), pageable);
