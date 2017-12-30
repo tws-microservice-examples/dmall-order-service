@@ -57,38 +57,13 @@ public class CustomerContact implements ValueObject<CustomerContact> {
 
 
 
-    public String getProvince() {
-        return province;
-    }
 
-    public String getCity() {
-        return city;
-    }
-
-    public String getArea() {
-        return area;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public String getMore_details() {
-        return more_details;
-    }
 
     private String more_details;
 
     public CustomerContact() {
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getAdress(){
-        return province+city+area+street+more_details;
-    }
 
     @Override
     public boolean sameValueAs(CustomerContact other) {

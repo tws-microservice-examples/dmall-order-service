@@ -28,18 +28,10 @@ public class OrderItem implements ValueObject<OrderItem> {
     @JoinColumn(name="ORDER_ID")
     private Order order;
 
-    public SkuSnapShot getSkuSnapShot() {
-        return skuSnapShot;
-    }
-
     @OneToOne(cascade=CascadeType.ALL, mappedBy = "orderItem",fetch = FetchType.EAGER)
     private SkuSnapShot skuSnapShot;
 
     public OrderItem() {
-    }
-
-    public Integer getAmount() {
-        return amount;
     }
 
     @Override
@@ -47,7 +39,5 @@ public class OrderItem implements ValueObject<OrderItem> {
         return other.id.equals(id);
     }
 
-//    public SkuSnapShot getSkuSnapShot() {
-//        return skuSnapShot;
-//    }
+
 }

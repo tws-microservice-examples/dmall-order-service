@@ -12,9 +12,6 @@ public class OrderItemRead implements ValueObject<OrderItemRead> {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonIgnore
     private Long id;
-//
-//    private Long skuSnapshotId;
-//    private double price;
 
     private Integer amount;
 
@@ -29,10 +26,7 @@ public class OrderItemRead implements ValueObject<OrderItemRead> {
     public OrderItemRead() {
     }
 
-//    public OrderItem(Integer amount, double price, String skuId) {
-//        this.amount = amount;
-//    }
-//
+
     public Integer getAmount() {
         return amount;
     }

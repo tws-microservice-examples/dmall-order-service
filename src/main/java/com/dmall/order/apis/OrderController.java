@@ -12,7 +12,6 @@ import com.dmall.order.domain.model.query.OrderItemRead;
 import com.dmall.order.domain.service.OrderQueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +20,6 @@ import javax.transaction.Transactional;
 
 import java.util.List;
 
-import static java.lang.String.format;
 
 @RestController
 @RequestMapping("/api/v1/orders")

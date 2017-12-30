@@ -26,10 +26,6 @@ public class Order implements DomainEntity<Long> {
         this.orderItems = orderItems;
     }
 
-    public void setOrderEvents(List<OrderEvent> orderEvents) {
-        this.orderEvents = orderEvents;
-    }
-
     @OneToOne(cascade=CascadeType.ALL, mappedBy = "order", fetch = FetchType.EAGER)
     private CustomerContact customerContact;
 
@@ -65,9 +61,6 @@ public class Order implements DomainEntity<Long> {
         return orderItems;
     }
 
-    //    public CustomerContact getCustomerContact() {
-//        return customerContact;
-//    }
 
     public void addEvent(OrderEvent orderEvent) {
         this.orderEvents.add(orderEvent);

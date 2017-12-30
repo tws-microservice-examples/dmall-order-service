@@ -42,9 +42,5 @@ public class OrderEvent {
         return name;
     }
 
-    public Long getTicketId() {
-        return ticketId;
-    }
-
 }
 
