@@ -1,4 +1,4 @@
 spring:
   product-service:
     ribbon:
-      listOfServers: localhost:8083
+      listOfServers: localhost:8085

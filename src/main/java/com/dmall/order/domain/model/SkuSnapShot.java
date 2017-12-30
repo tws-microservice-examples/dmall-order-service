@@ -17,6 +17,10 @@ public class SkuSnapShot implements ValueObject<SkuSnapShot> {
         this.skuId = skuId;
     }
 
+    public Long getSkuId() {
+        return skuId;
+    }
+
     private Long skuId;
 
     public void setPrice(double price) {

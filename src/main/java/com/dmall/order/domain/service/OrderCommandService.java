@@ -1,0 +1,37 @@
+package com.dmall.order.domain.service;
+
+import com.dmall.order.domain.factory.OrderCommandDTO;
+import com.dmall.order.domain.factory.OrderFactory;
+import com.dmall.order.domain.model.Order;
+import com.dmall.order.domain.model.OrderRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.stream.Collectors;
+
+@Service
+public class OrderCommandService {
+    private OrderRepository orderRepository;
+    private OrderFactory orderFactory;
+
+    @Autowired
+    public OrderCommandService(OrderRepository orderRepository, OrderFactory orderFactory) {
+        this.orderRepository = orderRepository;
+        this.orderFactory = orderFactory;
+    }
+
+
+    public Order submitOrder(OrderCommandDTO orderCommandDTO){
+        Order order = orderFactory.createNewOrderEntity(orderCommandDTO);
+        boolean moreThanOneSkuInOneOrder = order.getOrderItems().stream()
+                .anyMatch(orderItem -> order.getOrderItems().stream()
+                        .filter(anyOrderItem -> anyOrderItem.getSkuSnapShot().getSkuId().equals(orderItem))
+                        .collect(Collectors.toList()).size()
+                        > 1);
+        if(moreThanOneSkuInOneOrder){
+            throw new RuntimeException();
+        }
+        return orderRepository.save(order);
+    }
+
+}
