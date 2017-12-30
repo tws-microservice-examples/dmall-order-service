@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Table(name="jx_order_item")
 @Entity
-public class OrderItem implements ValueObject<OrderItem> {
+public class OrderItemRead implements ValueObject<OrderItemRead> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonIgnore
@@ -22,11 +22,11 @@ public class OrderItem implements ValueObject<OrderItem> {
     @JoinColumn(name="ORDER_ID")
     private Order order;
 
-    @OneToOne(cascade=CascadeType.ALL, mappedBy = "orderItem",fetch = FetchType.EAGER)
+    @OneToOne(cascade=CascadeType.ALL, mappedBy = "orderItemRead",fetch = FetchType.EAGER)
     private SkuSnapShot skuSnapShot;
 
 
-    public OrderItem() {
+    public OrderItemRead() {
     }
 
 //    public OrderIte(Integer amount, double price, String skuId) {
@@ -38,7 +38,7 @@ public class OrderItem implements ValueObject<OrderItem> {
     }
 
     @Override
-    public boolean sameValueAs(OrderItem other) {
+    public boolean sameValueAs(OrderItemRead other) {
         return other.id.equals(id);
     }
 

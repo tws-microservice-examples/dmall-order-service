@@ -17,7 +17,7 @@ public interface OrderBriefQueryRepositoryImpl extends OrderBriefQueryRepository
     List<OrderEvent> findAllOrderEventsByOrderId(Long id);
 
     @Override
-    @Query("select oe from OrderItem oe where oe.order.id =?1 ORDER BY oe.id DESC")
-    Page<OrderItem> findOrderItemsByOrderId(Long id, Pageable pageable);
+    @Query("select oe from OrderItemRead oe where oe.order.id =?1 ORDER BY oe.id DESC")
+    Page<OrderItemRead> findOrderItemsByOrderId(Long id, Pageable pageable);
 
 }

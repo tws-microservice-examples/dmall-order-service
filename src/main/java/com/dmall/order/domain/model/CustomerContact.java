@@ -13,6 +13,10 @@ public class CustomerContact implements ValueObject<CustomerContact> {
     @JsonIgnore
     private Long id;
 
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
     @OneToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="ORDER_ID")
     private Order order;

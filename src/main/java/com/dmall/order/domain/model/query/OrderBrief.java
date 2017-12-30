@@ -17,12 +17,11 @@ public class OrderBrief implements DomainEntity<Long> {
     @JsonIgnore
     private Long id;
 
-//    @OneToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name="Customer_Contact_ID")
-//    private CustomerContact customerContact;
+    @OneToOne(cascade=CascadeType.ALL, mappedBy = "order", fetch = FetchType.EAGER)
+    private CustomerContact customerContact;
 
     @Transient
-    private List<OrderItem> orderItems = new ArrayList<>();
+    private List<OrderItemRead> orderItemReads = new ArrayList<>();
 
     @CreatedDate
     private ZonedDateTime createdDate = ZonedDateTime.now();
@@ -53,13 +52,13 @@ public class OrderBrief implements DomainEntity<Long> {
     }
 
 
-    public List<OrderItem> getOrderItems() {
-        return orderItems;
+    public List<OrderItemRead> getOrderItemReads() {
+        return orderItemReads;
     }
 
-//    public CustomerContact getCustomerContact() {
-//        return customerContact;
-//    }
+    public CustomerContact getCustomerContact() {
+        return customerContact;
+    }
 
     public OrderStatus getStatus(){
         OrderEvent orderEvent = this.orderEvents.get(orderEvents.size() - 1);
@@ -68,8 +67,8 @@ public class OrderBrief implements DomainEntity<Long> {
     }
 
 
-    public void setOrderItems(List<OrderItem> orderItems) {
-        this.orderItems = orderItems;
+    public void setOrderItemReads(List<OrderItemRead> orderItemReads) {
+        this.orderItemReads = orderItemReads;
     }
 
     public ZonedDateTime getCreatedDate() {

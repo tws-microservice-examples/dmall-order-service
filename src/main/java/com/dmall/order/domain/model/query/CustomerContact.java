@@ -1,6 +1,7 @@
 package com.dmall.order.domain.model.query;
 
 import com.dmall.order.domain.common.ValueObject;
+import com.dmall.order.domain.model.Order;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -18,6 +19,10 @@ public class CustomerContact implements ValueObject<CustomerContact> {
     private String city;
     private String area;
     private String street;
+
+    @OneToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name="ORDER_ID")
+    private Order order;
 
     public Long getId() {
         return id;

@@ -33,9 +33,14 @@ public class OrderQueryService {
         one.apply(orderEvents);
 
         Pageable pageable = new PageRequest(0,2);
-        Page<OrderItem> orderItemsPage = orderBriefQueryRepository.findOrderItemsByOrderId(one.getId(), pageable);
-        one.setOrderItems(orderItemsPage.getContent());
+        Page<OrderItemRead> orderItemsPage = orderBriefQueryRepository.findOrderItemsByOrderId(one.getId(), pageable);
+        one.setOrderItemReads(orderItemsPage.getContent());
         return one;
     }
 
+    public Page<OrderItemRead> findAllItemsByOrder(Long id, Pageable pageable) {
+        Page<OrderItemRead> orderItemsPage = orderBriefQueryRepository.findOrderItemsByOrderId(id, pageable);
+
+        return orderItemsPage;
+    }
 }

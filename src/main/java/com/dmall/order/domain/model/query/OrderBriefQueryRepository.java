@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface OrderBriefQueryRepository {
 
-    Page<OrderItem> findOrderItemsByOrderId(Long id, Pageable pageable);
+    Page<OrderItemRead> findOrderItemsByOrderId(Long id, Pageable pageable);
 
     Page<OrderBrief> findAll(Pageable pageable);
 

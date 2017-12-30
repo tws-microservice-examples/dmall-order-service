@@ -29,7 +29,7 @@ public class SkuSnapShot implements ValueObject<SkuSnapShot> {
     }
     @OneToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="ORDER_ITEM_ID")
-    private OrderItem orderItem;
+    private OrderItemRead orderItemRead;
 
     @Override
     public boolean sameValueAs(SkuSnapShot other) {

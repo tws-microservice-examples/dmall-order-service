@@ -1,4 +1,4 @@
-package com.dmall.order.domain.model;
+package com.dmall.order.z.debug.spike.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

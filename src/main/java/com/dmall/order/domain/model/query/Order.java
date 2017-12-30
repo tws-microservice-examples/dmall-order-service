@@ -9,8 +9,6 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static javax.persistence.EnumType.STRING;
-
 @Entity(name = "jx_order")
 public class Order implements DomainEntity<Long> {
     @Id
@@ -23,7 +21,7 @@ public class Order implements DomainEntity<Long> {
     private CustomerContact customerContact;
 
     @OneToMany(cascade=CascadeType.ALL, mappedBy="order")
-    private List<OrderItem> orderItems = new ArrayList<>();
+    private List<OrderItemRead> orderItemReads = new ArrayList<>();
 
     @CreatedDate
     private ZonedDateTime createdDate = ZonedDateTime.now();
@@ -54,8 +52,8 @@ public class Order implements DomainEntity<Long> {
     }
 
 
-    public List<OrderItem> getOrderItems() {
-        return orderItems;
+    public List<OrderItemRead> getOrderItemReads() {
+        return orderItemReads;
     }
 
     public CustomerContact getCustomerContact() {

@@ -1,6 +1,6 @@
-package com.dmall.order.apis.dto;
+package com.dmall.order.z.debug.spike.apis.dto;
 
-import com.dmall.order.domain.model.Role;
+import com.dmall.order.z.debug.spike.domain.model.Role;
 
 public class RoleDTO {
 
