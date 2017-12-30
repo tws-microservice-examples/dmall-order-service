@@ -1,7 +1,6 @@
 package com.dmall.order.domain.model;
 
 import com.dmall.order.domain.common.ValueObject;
-import com.dmall.order.domain.model.OrderIte;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -14,20 +13,12 @@ public class SkuSnapShot implements ValueObject<SkuSnapShot> {
     @JsonIgnore
     private Long id;
 
-    public Long getSkuId() {
-        return skuId;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
     private Long skuId;
     private double price;
 
     @OneToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="ORDER_ITEM_ID")
-    private OrderIte orderItem;
+    private OrderItem orderItem;
     //
 
     public SkuSnapShot(){

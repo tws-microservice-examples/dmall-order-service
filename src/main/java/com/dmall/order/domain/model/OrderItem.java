@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Table(name="jx_order_item")
 @Entity
-public class OrderIte implements ValueObject<OrderIte> {
+public class OrderItem implements ValueObject<OrderItem> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonIgnore
@@ -35,7 +35,7 @@ public class OrderIte implements ValueObject<OrderIte> {
     @OneToOne(cascade=CascadeType.ALL, mappedBy = "orderItem",fetch = FetchType.EAGER)
     private SkuSnapShot skuSnapShot;
 
-    public OrderIte() {
+    public OrderItem() {
     }
 
     public Integer getAmount() {
@@ -43,7 +43,7 @@ public class OrderIte implements ValueObject<OrderIte> {
     }
 
     @Override
-    public boolean sameValueAs(OrderIte other) {
+    public boolean sameValueAs(OrderItem other) {
         return other.id.equals(id);
     }
 

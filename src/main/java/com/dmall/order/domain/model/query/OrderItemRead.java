@@ -20,7 +20,7 @@ public class OrderItemRead implements ValueObject<OrderItemRead> {
 
     @ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="ORDER_ID")
-    private Order order;
+    private OrderBrief order;
 
     @OneToOne(cascade=CascadeType.ALL, mappedBy = "orderItemRead",fetch = FetchType.EAGER)
     private SkuSnapShot skuSnapShot;
@@ -29,7 +29,7 @@ public class OrderItemRead implements ValueObject<OrderItemRead> {
     public OrderItemRead() {
     }
 
-//    public OrderIte(Integer amount, double price, String skuId) {
+//    public OrderItem(Integer amount, double price, String skuId) {
 //        this.amount = amount;
 //    }
 //

@@ -22,8 +22,8 @@ public class Order implements DomainEntity<Long> {
         this.customerContact = customerContact;
     }
 
-    public void setOrderItes(List<OrderIte> orderItes) {
-        this.orderItes = orderItes;
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 
     public void setOrderEvents(List<OrderEvent> orderEvents) {
@@ -34,7 +34,7 @@ public class Order implements DomainEntity<Long> {
     private CustomerContact customerContact;
 
     @OneToMany(cascade=CascadeType.ALL, mappedBy="order")
-    private List<OrderIte> orderItes = new ArrayList<>();
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     @CreatedDate
     private ZonedDateTime createdDate = ZonedDateTime.now();
@@ -61,8 +61,8 @@ public class Order implements DomainEntity<Long> {
     }
 
 
-    public List<OrderIte> getOrderItes() {
-        return orderItes;
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
     }
 
     //    public CustomerContact getCustomerContact() {

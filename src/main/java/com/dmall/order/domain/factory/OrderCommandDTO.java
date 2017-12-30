@@ -2,21 +2,21 @@ package com.dmall.order.domain.factory;
 
 
 import com.dmall.order.domain.model.CustomerContact;
-import com.dmall.order.domain.model.OrderIte;
+import com.dmall.order.domain.model.OrderItem;
 
 import java.util.List;
 
 public class OrderCommandDTO {
 
-    public List<OrderIte> getOrderItes() {
-        return orderItes;
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
     }
 
-    public void setOrderItes(List<OrderIte> orderItes) {
-        this.orderItes = orderItes;
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 
-    List<OrderIte> orderItes;
+    List<OrderItem> orderItems;
 
     private CustomerContact customerContact;
 

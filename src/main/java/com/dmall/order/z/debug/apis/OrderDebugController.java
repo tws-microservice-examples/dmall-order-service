@@ -50,11 +50,11 @@ public class OrderDebugController extends HttpFacadeBaseClass {
         System.out.println("all order,crrent param:"+id);
         orderRepositoryDebug.findAll().forEach(order -> {
             System.out.println("order:" + ToStringBuilder.reflectionToString(order));
-            order.getOrderItes().stream().forEach(orderIte -> ToStringBuilder.reflectionToString(orderIte));
+            order.getOrderItems().stream().forEach(orderIte -> ToStringBuilder.reflectionToString(orderIte));
         });
-        skuRepositoryDebug.findAll().forEach(skuSnapShot -> System.out.println("skuId: "+skuSnapShot.getSkuId()));
+        skuRepositoryDebug.findAll().forEach(skuSnapShot -> System.out.println("skuId: "+ToStringBuilder.reflectionToString(skuSnapShot)));
 
-        orderEventRepositoryDebug.findAll().forEach(orderEvent -> System.out.println("orderEvent:" + ToStringBuilder.reflectionToString(orderEvent)));
+        orderEventRepositoryDebug.findAll().forEach(orderEvent -> System.out.println("orderEvent: " + ToStringBuilder.reflectionToString(orderEvent)));
 
         OrderBrief order = orderQueryService.findOrderBriefById(id);
 

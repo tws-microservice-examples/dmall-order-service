@@ -10,8 +10,7 @@ With example Data
 
 ```json
 {
-  "name": "aa",
-  "orderItes": [
+  "orderItems": [
     {
       "skuSnapShot": {
         "skuId": 1,

@@ -9,11 +9,11 @@ import com.dmall.order.domain.factory.OrderFactory;
 import com.dmall.order.domain.model.*;
 import com.dmall.order.domain.model.query.OrderBrief;
 import com.dmall.order.domain.model.query.OrderItemRead;
-import com.dmall.order.domain.model.query.OrderQueryRepository;
 import com.dmall.order.domain.service.OrderQueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,17 +27,15 @@ import static java.lang.String.format;
 @RequestMapping("/api/v1/orders")
 public class OrderController extends HttpFacadeBaseClass {
 
-    private OrderQueryRepository orderQueryRepository;
     private OrderQueryService orderQueryService;
     private OrderFactory orderFactory;
     private OrderRepository orderRepository;
 
 
     @Autowired
-    public OrderController(OrderQueryRepository orderQueryRepository, OrderQueryService orderQueryService,
+    public OrderController(OrderQueryService orderQueryService,
                            OrderFactory orderFactory,
                            OrderRepository orderRepository) {
-        this.orderQueryRepository = orderQueryRepository;
         this.orderQueryService = orderQueryService;
         this.orderFactory = orderFactory;
         this.orderRepository = orderRepository;
@@ -75,7 +73,7 @@ public class OrderController extends HttpFacadeBaseClass {
 
     @Transactional
     @GetMapping("/{id}/orderItems")
-    public ApiForResponse<List<OrderItemRead>> findItemsByOrderId(@PathVariable("id") final long id, PageRequest pageable) {
+    public ApiForResponse<List<OrderItemRead>> findItemsByOrderId(@PathVariable("id") final long id, Pageable pageable) {
 
         Page<OrderItemRead> orderItems = orderQueryService.findAllItemsByOrder(id, pageable);
 

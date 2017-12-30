@@ -23,7 +23,7 @@ public class OrderEventRead {
 
     @ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="ORDER_ID")
-    private Order order;
+    private OrderBrief order;
 
     public String getName() {
         return name;
