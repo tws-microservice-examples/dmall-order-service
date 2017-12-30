@@ -36,6 +36,8 @@ node{
     }
 
     stage('Deploy to DEV') {
-        sh './deployToDEV.sh'
+         withCredentials([usernamePassword(credentialsId: 'dev_rencher_api_key', passwordVariable: 'SECRET', usernameVariable: 'KEY')]) {
+            sh './deployToDEV.sh'
+        }
     }
 }
