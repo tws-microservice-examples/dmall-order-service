@@ -28,10 +28,10 @@ public class OrderBriefController extends HttpFacadeBaseClass {
     public final ApiForResponse<OrderBrief> findById(@PathVariable("id") final long id) {
         OrderBrief orderBrief = orderQueryService.findOrderBriefWithDetailById(id);
 
-        //orika
         ApiForResponse<OrderBrief> orderApiForResponse = new ApiForResponse<>(orderBrief.getId(), orderBrief);
         return orderApiForResponse;
     }
+
 
 //    @GetMapping("/{id}/events")
 //    public final ApiForResponse<OrderEvent> findEventsById(@PathVariable("id") final long id) {

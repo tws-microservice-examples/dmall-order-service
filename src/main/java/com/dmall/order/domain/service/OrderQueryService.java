@@ -19,6 +19,7 @@ public class OrderQueryService {
     }
 
     public OrderBrief findOrderBriefById(Long id){
+
         OrderBrief one = orderBriefQueryRepository.findOne(id);
         List<OrderEvent> orderEvents = orderBriefQueryRepository.findAllOrderEventsByOrderId(id);
         one.apply(orderEvents);
@@ -36,4 +37,5 @@ public class OrderQueryService {
         one.setOrderItems(orderItemsPage.getContent());
         return one;
     }
+
 }

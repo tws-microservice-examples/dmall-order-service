@@ -17,16 +17,12 @@ public class OrderBrief implements DomainEntity<Long> {
     @JsonIgnore
     private Long id;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="Customer_Contact_ID")
-    private CustomerContact customerContact;
+//    @OneToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name="Customer_Contact_ID")
+//    private CustomerContact customerContact;
 
     @Transient
     private List<OrderItem> orderItems = new ArrayList<>();
-
-    public ZonedDateTime getCreatedDate() {
-        return createdDate;
-    }
 
     @CreatedDate
     private ZonedDateTime createdDate = ZonedDateTime.now();
@@ -61,9 +57,9 @@ public class OrderBrief implements DomainEntity<Long> {
         return orderItems;
     }
 
-    public CustomerContact getCustomerContact() {
-        return customerContact;
-    }
+//    public CustomerContact getCustomerContact() {
+//        return customerContact;
+//    }
 
     public OrderStatus getStatus(){
         OrderEvent orderEvent = this.orderEvents.get(orderEvents.size() - 1);
@@ -74,5 +70,9 @@ public class OrderBrief implements DomainEntity<Long> {
 
     public void setOrderItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;
+    }
+
+    public ZonedDateTime getCreatedDate() {
+        return createdDate;
     }
 }

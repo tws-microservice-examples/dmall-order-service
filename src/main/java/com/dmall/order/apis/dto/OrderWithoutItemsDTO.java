@@ -26,25 +26,25 @@ public class OrderWithoutItemsDTO {
 
     private String orderItems;
 
-    public CustomerContact getCustomerContact() {
-        return customerContact;
-    }
+//    public CustomerContact getCustomerContact() {
+//        return customerContact;
+//    }
 
     public String getCreatedDate() {
         return createdDate;
     }
 
-    public OrderStatus getStatus() {
-        return status;
-    }
+//    public OrderStatus getStatus() {
+//        return status;
+//    }
 
 
 
     public OrderWithoutItemsDTO(OrderBrief order) {
         this.id = order.getId();
-        this.customerContact = order.getCustomerContact();
+//        this.customerContact = order.getCustomerContact();
         this.createdDate = order.getCreatedDate().toString();
-        this.status = order.getStatus();
+//        this.status = order.getStatus();
 
     }
 

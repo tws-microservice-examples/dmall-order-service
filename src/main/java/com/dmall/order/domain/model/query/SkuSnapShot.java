@@ -27,8 +27,7 @@ public class SkuSnapShot implements ValueObject<SkuSnapShot> {
     public SkuSnapShot(){
 
     }
-
-    @ManyToOne(fetch= FetchType.LAZY)
+    @OneToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="ORDER_ITEM_ID")
     private OrderItem orderItem;
 

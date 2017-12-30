@@ -1,6 +1,5 @@
 package com.dmall.order.domain.model.query;
 
-import com.dmall.order.domain.model.Address;
 import com.dmall.order.domain.common.ValueObject;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
