@@ -1,4 +1,7 @@
+
 spring:
+  application:
+    name: order-service
   cloud:
     config:
-      uri: http://dmall-config-server-dmall-config-server-1:8888
+      uri: http://dmall-config-server:8888
