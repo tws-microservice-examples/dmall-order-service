@@ -19,7 +19,8 @@ public class OrderApplicationService {
 
 
     @Autowired
-    public OrderApplicationService(OrderCommandService orderCommandService, ProductService productService) {
+    public OrderApplicationService(OrderCommandService orderCommandService,
+                                   ProductService productService) {
         this.orderCommandService = orderCommandService;
         this.productService = productService;
     }
@@ -36,6 +37,7 @@ public class OrderApplicationService {
         if(prodcts == null){
             throw new RuntimeException("techinique problem");
         }
+
         if (prodcts.size() != skuIds.size()) {
             throw new RuntimeException("security problem");
         }
