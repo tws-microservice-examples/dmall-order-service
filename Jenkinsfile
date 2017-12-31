@@ -34,19 +34,19 @@ pipeline {
         stage('Check') {
             parallel {
                 stage('Findbugs') {
-                        agent any
+                        agent none
                         steps {
                             echo 'Findbugs is finished.'
                         }
                     }
                 stage('Checkstyle') {
-                        agent any
+                        agent none
                         steps {
                             echo 'Checkstyle is finished.'
                         }
                     }
                 stage('PMD') {
-                        agent any
+                        agent none
                         steps {
                             echo 'PMD is finished.'
                         }
