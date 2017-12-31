@@ -3,10 +3,16 @@ package com.dmall.order.apis.services;
 import com.dmall.order.domain.factory.OrderCommandDTO;
 import com.dmall.order.domain.model.Order;
 import com.dmall.order.domain.service.OrderCommandService;
+import com.dmall.order.service.InventoryService;
 import com.dmall.order.service.ProductService;
+import com.dmall.order.service.dto.InventoryLockEventDTO;
+import com.dmall.order.service.model.Inventory;
 import com.dmall.order.service.model.Product;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,16 +22,19 @@ import java.util.stream.Collectors;
 public class OrderApplicationService {
     private OrderCommandService orderCommandService;
     private ProductService productService;
+    private InventoryService inventoryService;
 
 
     @Autowired
     public OrderApplicationService(OrderCommandService orderCommandService,
-                                   ProductService productService) {
+                                   ProductService productService, InventoryService inventoryService) {
         this.orderCommandService = orderCommandService;
         this.productService = productService;
+        this.inventoryService = inventoryService;
     }
 
-
+//思考题：application service 和domain service职责上怎么划分
+//       Order如果复杂化会怎么复杂？
     public Order submitOrder(OrderCommandDTO orderCommandDTO){
         List<String> skuIds = orderCommandDTO.getOrderItems().stream().map(orderItem -> orderItem.getSkuSnapShot().getSkuId().toString()).collect(Collectors.toList());
 
@@ -42,7 +51,28 @@ public class OrderApplicationService {
             throw new RuntimeException("security problem");
         }
 
-        return orderCommandService.submitOrder(orderCommandDTO);
+        Inventory inventory = inventoryService.getInventoryBySku("6009907");
+
+
+        orderCommandDTO.getOrderItems().stream().forEach(orderItem -> {
+
+            //思考题，中间有一个锁定失败了怎么办？
+            String sku = orderItem.getSkuSnapShot().getSkuId().toString();
+
+            ResponseEntity<Inventory> inventoryResponse = inventoryService.lockInventory(sku, new InventoryLockEventDTO(orderItem));
+
+            if (inventoryResponse == null) {
+                throw new RuntimeException("techinique Problem");
+            }
+
+            if (!inventoryResponse.getStatusCode().equals(HttpStatus.CREATED)) {
+                throw new RuntimeException("locked failed");
+            }
+
+        });
+
+        Order createdOrder = orderCommandService.submitOrder(orderCommandDTO);
+        return createdOrder;
 
     }
 

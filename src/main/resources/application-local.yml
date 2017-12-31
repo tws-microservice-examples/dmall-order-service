@@ -23,5 +23,9 @@ eureka:
 
 product-service:
   ribbon:
-    listOfServers: localhost:8085
+    listOfServers: localhost:8083
 
+
+inventory-service:
+  ribbon:
+    listOfServers: localhost:8085
