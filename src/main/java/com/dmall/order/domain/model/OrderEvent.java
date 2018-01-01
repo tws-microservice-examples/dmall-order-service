@@ -11,7 +11,8 @@ public class OrderEvent {
 
     public enum Values{
         CREATED,
-        PAID
+        PAID,
+        CANCEL;
     }
 
     @Id

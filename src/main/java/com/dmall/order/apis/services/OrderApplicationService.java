@@ -38,24 +38,17 @@ public class OrderApplicationService {
 //TODO: 思考题：application service 和domain service职责上怎么划分
 //       Order如果复杂化会怎么复杂？
     public Order submitOrder(OrderCommandDTO orderCommandDTO){
-        List<String> skuIds = orderCommandDTO.getOrderItems().stream().map(orderItem -> orderItem.getSkuSnapShot().getSkuId().toString()).collect(Collectors.toList());
+        //TODO: 下面这两个业务该不该放到domain层？
+        validSkuExist(orderCommandDTO);
+        lockInventory(orderCommandDTO);
 
-        String[] skus = skuIds.toArray(new String[]{});
+        //TODO: 这里漏了一个业务，是什么？
+        Order createdOrder = orderCommandService.submitOrder(orderCommandDTO);
+        return createdOrder;
 
-        List<Product> prodcts = productService.findProdctsBySkuIn(skus);
-        System.out.println(ToStringBuilder.reflectionToString(prodcts));
+    }
 
-        if(prodcts == null){
-            throw new RuntimeException("techinique problem");
-        }
-
-        if (prodcts.size() != skuIds.size()) {
-            throw new RuntimeException("security problem");
-        }
-
-        Inventory inventory = inventoryService.getInventoryBySku("6009907");
-
-
+    private void lockInventory(OrderCommandDTO orderCommandDTO) {
         orderCommandDTO.getOrderItems().stream().forEach(orderItem -> {
 
             //TODO: 思考题，中间有一个锁定失败了怎么办？
@@ -72,17 +65,35 @@ public class OrderApplicationService {
             }
 
         });
+    }
 
-        //TODO: 这里漏了一个业务，是什么？
-        Order createdOrder = orderCommandService.submitOrder(orderCommandDTO);
-        return createdOrder;
+    private void validSkuExist(OrderCommandDTO orderCommandDTO) {
+        List<String> skuIds = orderCommandDTO.getOrderItems().stream().map(orderItem -> orderItem.getSkuSnapShot().getSkuId().toString()).collect(Collectors.toList());
 
+        String[] skus = skuIds.toArray(new String[]{});
+
+        List<Product> prodcts = productService.findProdctsBySkuIn(skus);
+        System.out.println(ToStringBuilder.reflectionToString(prodcts));
+
+        if(prodcts == null){
+            throw new RuntimeException("techinique problem");
+        }
+
+        if (prodcts.size() != skuIds.size()) {
+            throw new RuntimeException("security problem");
+        }
     }
 
     public void postEvent(Long orderId, OrderEvent orderEvent) {
+        //TODO: 这段逻辑到底在哪比较合适？还有没有其他的处理方法？优缺点是什么？
         if(orderEvent.getTicketName().equals("PaymentRecord")){
             orderEvent.setName(OrderEvent.Values.PAID.name());
         }
+
+        if(orderEvent.getTicketName().equals("CancelAcceptRecord")){
+            orderEvent.setName(OrderEvent.Values.CANCEL.name());
+        }
+        //TODO: 什么是domain级别应该关心的业务？提示：事件之间是不是逻辑关系？
         orderCommandService.postEvent(orderId, orderEvent);
         //TODO: 这里还缺一些业务，缺了什么？有几种处理方式？
     }
