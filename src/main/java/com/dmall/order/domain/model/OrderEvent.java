@@ -10,7 +10,8 @@ import javax.persistence.*;
 public class OrderEvent {
 
     public enum Values{
-        CREATED
+        CREATED,
+        PAID
     }
 
     @Id
@@ -25,6 +26,12 @@ public class OrderEvent {
     private String name;
 
     private Long ticketId;
+
+    public String getTicketName() {
+        return ticketName;
+    }
+
+    private String ticketName;
 
     public Order getOrder() {
         return order;

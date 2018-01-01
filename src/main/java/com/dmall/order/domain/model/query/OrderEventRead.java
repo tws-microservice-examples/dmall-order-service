@@ -7,11 +7,6 @@ import javax.persistence.*;
 @Table(name="jx_order_event")
 @Entity
 public class OrderEventRead {
-
-    enum Values{
-        CREATED
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonIgnore

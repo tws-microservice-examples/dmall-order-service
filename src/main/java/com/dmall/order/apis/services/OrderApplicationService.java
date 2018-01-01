@@ -2,6 +2,8 @@ package com.dmall.order.apis.services;
 
 import com.dmall.order.domain.factory.OrderCommandDTO;
 import com.dmall.order.domain.model.Order;
+import com.dmall.order.domain.model.OrderEvent;
+import com.dmall.order.domain.model.query.OrderBrief;
 import com.dmall.order.domain.service.OrderCommandService;
 import com.dmall.order.service.InventoryService;
 import com.dmall.order.service.ProductService;
@@ -76,4 +78,11 @@ public class OrderApplicationService {
 
     }
 
+    public void postEvent(Long orderId, OrderEvent orderEvent) {
+        if(orderEvent.getTicketName().equals("PaymentRecord")){
+            orderEvent.setName(OrderEvent.Values.PAID.name());
+        }
+        orderCommandService.postEvent(orderId, orderEvent);
+        // 这里还缺一些业务，缺了什么？
+    }
 }

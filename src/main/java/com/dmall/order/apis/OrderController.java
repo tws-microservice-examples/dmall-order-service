@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -75,6 +77,19 @@ public class OrderController extends HttpFacadeBaseClass {
         Page<OrderItemRead> orderItems = orderQueryService.findAllItemsByOrder(id, pageable);
 
         ApiForResponse<List<OrderItemRead>> orderApiForResponse = new ApiForResponse<>(id, orderItems.getContent());
+        return orderApiForResponse;
+    }
+
+    @Transactional
+    @PostMapping(path="/{id}/events",  produces = MediaType.APPLICATION_JSON_VALUE)
+    public ApiForResponse<OrderCreatedResponseDTO> postEvent(@PathVariable("id") final long id, @RequestBody OrderEvent orderEvent) {
+
+        orderApplicationService.postEvent(id, orderEvent);
+
+        OrderCreatedResponseDTO result = new OrderCreatedResponseDTO();
+        result.setUri(String.format("/orders/%d", id));
+
+        ApiForResponse<OrderCreatedResponseDTO> orderApiForResponse = new ApiForResponse<>(id, result);
         return orderApiForResponse;
     }
 }
