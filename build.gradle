@@ -1,16 +1,17 @@
 buildscript {
 	project.ext {
         bootVersion = '1.5.9.RELEASE'
-        cloudVersion = '1.1.0.RELEASE'
-        seurityVersion = '2.0.8.RELEASE'
     }
     repositories {
         maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        mavenCentral()
+        jcenter()
     }
     
     dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:0.6.0.RELEASE"
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${project.bootVersion}"
-
+        classpath "org.springframework.cloud:spring-cloud-contract-gradle-plugin:1.2.1.RELEASE"
     }
 }
 
@@ -18,8 +19,9 @@ apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'java'
+apply plugin: 'spring-cloud-contract'
+apply plugin: 'maven-publish'
 apply plugin: 'io.spring.dependency-management'
-
 
 jar {
     baseName = 'order-service'
@@ -28,6 +30,12 @@ jar {
 
 repositories {
     maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+    mavenCentral()
+    jcenter()
+}
+
+ext {
+    springCloudVersion = 'Edgware.RELEASE'
 }
 
 dependencies {
@@ -39,26 +47,49 @@ dependencies {
     compile("org.springframework.cloud:spring-cloud-starter-eureka")
     compile("org.springframework.cloud:spring-cloud-starter-hystrix")
     compile("org.springframework.cloud:spring-cloud-starter-feign")
+    compile 'com.github.jmnarloch:modelmapper-spring-boot-starter:1.0.1'
 
     compile("org.flywaydb:flyway-core:4.1.1")
     runtime('com.h2database:h2')
     runtime('mysql:mysql-connector-java')
 
-    testCompile group: 'junit', name: 'junit', version: '4.+'
-    testCompile 'org.springframework:spring-test:4.0.6.RELEASE'
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile 'org.springframework:spring-test'
+    testCompile 'org.codehaus.groovy:groovy-all:2.4.6'
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+    testCompile 'org.spockframework:spock-spring:1.0-groovy-2.4'
+    testCompile "org.springframework.cloud:spring-cloud-starter-contract-verifier"
 }
 
 dependencyManagement {
     imports {
-        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR6'
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
     }
 }
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-
 task createWrapper(type: Wrapper) {
     gradleVersion = '3.5.1'
 }
 
+contracts {
+    packageWithBaseClasses = 'com.dmall'
+}
+
+group = 'com.dmall'
+version = '0.0.1-SNAPSHOT'
+
+
+publishing {
+    repositories {
+        maven {
+            url 'http://ec2-54-223-162-96.cn-north-1.compute.amazonaws.com.cn:8081/repository/maven-snapshots/'
+            credentials {
+                username = 'admin'
+                password = 'admin123'
+            }
+        }
+    }
+}
