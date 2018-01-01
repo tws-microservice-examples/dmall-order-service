@@ -45,7 +45,7 @@ public class OrderDebugController extends HttpFacadeBaseClass {
     @GetMapping("/{id}")
     public ApiForResponse<OrderWithoutItemsDTO> findById(@PathVariable("id") final long id) {
         System.out.println("all customerContact");
-        customerContactRepository.findAll().forEach(customerContact -> System.out.println("customer contact:"+customerContact.getId()));
+        customerContactRepository.findAll().forEach(customerContact -> System.out.println("customer contact:"+ToStringBuilder.reflectionToString(customerContact)));
 
         System.out.println("all order,crrent param:"+id);
         orderRepositoryDebug.findAll().forEach(order -> {

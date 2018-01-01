@@ -22,6 +22,10 @@ public class OrderItem implements ValueObject<OrderItem> {
         this.skuSnapShot = skuSnapShot;
     }
 
+    public Integer getAmount() {
+        return amount;
+    }
+
     private Integer amount;
 
     public Order getOrder() {

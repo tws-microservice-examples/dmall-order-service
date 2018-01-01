@@ -3,6 +3,7 @@ package com.dmall.order.apis;
 import com.dmall.order.apis.common.ApiForResponse;
 import com.dmall.order.apis.common.HttpFacadeBaseClass;
 import com.dmall.order.apis.dto.OrderCreatedResponseDTO;
+import com.dmall.order.apis.services.OrderApplicationService;
 import com.dmall.order.domain.factory.OrderCommandDTO;
 import com.dmall.order.apis.dto.OrderWithoutItemsDTO;
 import com.dmall.order.domain.factory.OrderFactory;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -28,15 +31,16 @@ public class OrderController extends HttpFacadeBaseClass {
     private OrderQueryService orderQueryService;
     private OrderFactory orderFactory;
     private OrderRepository orderRepository;
-
+    private OrderApplicationService orderApplicationService;
 
     @Autowired
     public OrderController(OrderQueryService orderQueryService,
                            OrderFactory orderFactory,
-                           OrderRepository orderRepository) {
+                           OrderRepository orderRepository, OrderApplicationService orderApplicationService) {
         this.orderQueryService = orderQueryService;
         this.orderFactory = orderFactory;
         this.orderRepository = orderRepository;
+        this.orderApplicationService = orderApplicationService;
     }
 
     @Transactional
@@ -56,10 +60,7 @@ public class OrderController extends HttpFacadeBaseClass {
     @Transactional
     @PostMapping(path="",  produces = MediaType.APPLICATION_JSON_VALUE)
     public ApiForResponse<OrderCreatedResponseDTO> createOrder(@RequestBody OrderCommandDTO orderRequest) {
-
-        Order order = orderFactory.createNewOrderEntity(orderRequest);
-
-        Order savedOrder = orderRepository.save(order);
+        Order savedOrder = orderApplicationService.submitOrder(orderRequest);
 
 
         OrderCreatedResponseDTO result = new OrderCreatedResponseDTO();
@@ -76,6 +77,19 @@ public class OrderController extends HttpFacadeBaseClass {
         Page<OrderItemRead> orderItems = orderQueryService.findAllItemsByOrder(id, pageable);
 
         ApiForResponse<List<OrderItemRead>> orderApiForResponse = new ApiForResponse<>(id, orderItems.getContent());
+        return orderApiForResponse;
+    }
+
+    @Transactional
+    @PostMapping(path="/{id}/events",  produces = MediaType.APPLICATION_JSON_VALUE)
+    public ApiForResponse<OrderCreatedResponseDTO> postEvent(@PathVariable("id") final long id, @RequestBody OrderEvent orderEvent) {
+
+        orderApplicationService.postEvent(id, orderEvent);
+
+        OrderCreatedResponseDTO result = new OrderCreatedResponseDTO();
+        result.setUri(String.format("/orders/%d", id));
+
+        ApiForResponse<OrderCreatedResponseDTO> orderApiForResponse = new ApiForResponse<>(id, result);
         return orderApiForResponse;
     }
 }

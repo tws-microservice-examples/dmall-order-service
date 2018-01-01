@@ -1,14 +1,21 @@
 package com.dmall.order.domain.model.query;
 
+import com.dmall.order.domain.model.OrderEvent;
+
 public enum OrderStatus {
     NOT_COMPLETED,
     COMPLETED,
-    Cancled;
+    UNKOWN_EXCEPTION,
+    CANCLED;
+
 
     public static OrderStatus getByOrderEvent(OrderEventRead orderEventRead) {
-        if(OrderEventRead.Values.CREATED.name().equals(orderEventRead.getName())){
+        if(OrderEvent.Values.CREATED.name().equals(orderEventRead.getName())){
             return NOT_COMPLETED;
         }
-        return Cancled;
+        if(OrderEvent.Values.PAID.name().equals(orderEventRead.getName())){
+            return COMPLETED;
+        }
+        return UNKOWN_EXCEPTION;
     }
 }

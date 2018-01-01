@@ -1,25 +1,18 @@
-package com.dmall.order.domain.model;
+package com.dmall.order.z.debug.spike.domain.model;
 
-import com.dmall.order.domain.common.ValueObject;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
+//TODO: 思考题Contact能不能跟Order下的共用？
 @Table(name = "jx_customer_contact")
 @Entity
-public class CustomerContact implements ValueObject<CustomerContact> {
+public class Contact  {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonIgnore
     private Long id;
 
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    @OneToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name="ORDER_ID")
-    private Order order;
 
     public void setName(String name) {
         this.name = name;
@@ -50,15 +43,31 @@ public class CustomerContact implements ValueObject<CustomerContact> {
     private String city;
     private String area;
     private String street;
-
     private String more_details;
 
-    public CustomerContact() {
+
+
+    public String getName() {
+        return name;
     }
 
+    public String getProvince() {
+        return province;
+    }
 
-    @Override
-    public boolean sameValueAs(CustomerContact other) {
-        return other.name.equals(name);
+    public String getCity() {
+        return city;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getMore_details() {
+        return more_details;
     }
 }
