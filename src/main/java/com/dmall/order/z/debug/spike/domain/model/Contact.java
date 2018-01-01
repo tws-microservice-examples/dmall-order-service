@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
+//TODO: 思考题Contact能不能跟Order下的共用？
 @Table(name = "jx_customer_contact")
 @Entity
 public class Contact  {

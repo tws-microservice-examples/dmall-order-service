@@ -35,7 +35,7 @@ public class OrderApplicationService {
         this.inventoryService = inventoryService;
     }
 
-//思考题：application service 和domain service职责上怎么划分
+//TODO: 思考题：application service 和domain service职责上怎么划分
 //       Order如果复杂化会怎么复杂？
     public Order submitOrder(OrderCommandDTO orderCommandDTO){
         List<String> skuIds = orderCommandDTO.getOrderItems().stream().map(orderItem -> orderItem.getSkuSnapShot().getSkuId().toString()).collect(Collectors.toList());
@@ -58,7 +58,7 @@ public class OrderApplicationService {
 
         orderCommandDTO.getOrderItems().stream().forEach(orderItem -> {
 
-            //思考题，中间有一个锁定失败了怎么办？
+            //TODO: 思考题，中间有一个锁定失败了怎么办？
             String sku = orderItem.getSkuSnapShot().getSkuId().toString();
 
             ResponseEntity<Inventory> inventoryResponse = inventoryService.lockInventory(sku, new InventoryLockEventDTO(orderItem));
@@ -73,6 +73,7 @@ public class OrderApplicationService {
 
         });
 
+        //TODO: 这里漏了一个业务，是什么？
         Order createdOrder = orderCommandService.submitOrder(orderCommandDTO);
         return createdOrder;
 
@@ -83,6 +84,6 @@ public class OrderApplicationService {
             orderEvent.setName(OrderEvent.Values.PAID.name());
         }
         orderCommandService.postEvent(orderId, orderEvent);
-        // 这里还缺一些业务，缺了什么？
+        //TODO: 这里还缺一些业务，缺了什么？有几种处理方式？
     }
 }

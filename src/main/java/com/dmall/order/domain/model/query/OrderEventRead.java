@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
+//TODO: Event要不要合成一个？
 @Table(name="jx_order_event")
 @Entity
 public class OrderEventRead {

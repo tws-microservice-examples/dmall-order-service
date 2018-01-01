@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
+
+//TODO: 思考题：这回我就不问该不该合了，我问一个问题，这货跟Product是不是一个东西？这里面有哪些歧义？
 @Table(name="jx_sku_snapshot")
 @Entity
 public class SkuSnapShot implements ValueObject<SkuSnapShot> {

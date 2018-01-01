@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
+
+//TODO: 思考题： query和command两个上下文下的CustomerContact可不可以合成一个？什么情况应该合？什么情况下不应该合？各有什么价值？
 @Entity(name = "jx_customer_contact")
 public class CustomerContact implements ValueObject<CustomerContact> {
     @Id

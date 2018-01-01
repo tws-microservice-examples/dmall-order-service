@@ -13,6 +13,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+//TODO: 思考题： User Domain怎么拆出去
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController extends HttpFacadeBaseClass {
