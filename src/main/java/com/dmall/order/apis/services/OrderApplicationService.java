@@ -42,7 +42,7 @@ public class OrderApplicationService {
         validSkuExist(orderCommandDTO);
         lockInventory(orderCommandDTO);
 
-        //TODO: 这里漏了一个业务，是什么？
+        //TODO: 这里漏了一个业务，是什么？提示：价格应该用谁的？
         Order createdOrder = orderCommandService.submitOrder(orderCommandDTO);
         return createdOrder;
 
