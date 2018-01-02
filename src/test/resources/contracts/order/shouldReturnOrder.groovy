@@ -150,6 +150,38 @@ import org.springframework.cloud.contract.spec.Contract
                     }
                 """
             }
+        },
+
+        Contract.make {
+            name('should cancel order success')
+            request {
+                method POST()
+                url ('http://localhost:8084/api/v1/orders/1/events') {
+                }
+                headers {
+                    header 'Accept': 'application/json'
+                    header 'Content-Type': 'application/json'
+                }
+                body """
+                    {
+                      "ticketId": 1,
+                      "ticketName": "CancelAcceptedRecord"
+                    }
+                """
+            }
+            response {
+                status(200)
+                body """
+                    {
+                        "data": {
+                            "id": 1,
+                            "attributes": {
+                                "uri": "/orders/1"
+                            }
+                        }
+                    }
+                """
+            }
         }
 
 ]
