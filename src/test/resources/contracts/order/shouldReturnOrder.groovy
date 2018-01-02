@@ -12,6 +12,9 @@ import org.springframework.cloud.contract.spec.Contract
             }
             response {
                 status(200)
+                headers {
+                    header 'Content-Type': 'application/json;charset=UTF-8'
+                }
                 body """
                     {
                         "data": {
@@ -68,6 +71,9 @@ import org.springframework.cloud.contract.spec.Contract
             }
             response {
                 status(200)
+                headers {
+                    header 'Content-Type': 'application/json;charset=UTF-8'
+                }
                 body """
                     {
                         "data": {
@@ -94,6 +100,9 @@ import org.springframework.cloud.contract.spec.Contract
             }
             response {
                 status(200)
+                headers {
+                    header 'Content-Type': 'application/json;charset=UTF-8'
+                }
                 body """
                     {
                         "data": {
@@ -139,6 +148,9 @@ import org.springframework.cloud.contract.spec.Contract
             }
             response {
                 status(200)
+                headers {
+                    header 'Content-Type': 'application/json;charset=UTF-8'
+                }
                 body """
                     {
                         "data": {
@@ -171,6 +183,9 @@ import org.springframework.cloud.contract.spec.Contract
             }
             response {
                 status(200)
+                headers {
+                    header 'Content-Type': 'application/json;charset=UTF-8'
+                }
                 body """
                     {
                         "data": {
