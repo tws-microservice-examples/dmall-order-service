@@ -1,0 +1,11 @@
+eureka:
+  instance:
+    metadata-map:
+      cluster: dmall
+      management:
+        port: ${management.port}
+        context-path: ${management.context-path}
+      health:
+        path: ${management.context-path}/health
+    status-page-url-path: ${management.context-path}/info
+    health-check-url-path: ${management.context-path}/health

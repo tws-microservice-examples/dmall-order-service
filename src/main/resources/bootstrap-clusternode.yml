@@ -1,0 +1,9 @@
+
+spring:
+  application:
+    name: order-service
+  profiles:
+    active: clsuternode
+  cloud:
+    config:
+      uri: http://localhost:8888
