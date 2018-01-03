@@ -20,7 +20,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 step([$class: 'WsCleanup'])
-            git  poll: true,  credentialsId: 'git-viewer', url: 'git@gitee.com:tws-micro-service/dmall-order-service.git', branch: 'master'
+            git  poll: true,  credentialsId: 'git-viewer', url: 'git@gitee.com:tws-micro-service/dmall-order-service.git', branch: 'release'
             }
                 
         }
