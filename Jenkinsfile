@@ -56,7 +56,7 @@ pipeline {
 
         stage('Test') {
             steps{
-                sh './gradlew test'
+                sh 'SPRING_PROFILES_ACTIVE=test ./gradlew test'
             }
         }
 
