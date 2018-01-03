@@ -21,7 +21,7 @@ import org.springframework.cloud.contract.spec.Contract
                             "id": 1,
                             "attributes": {
                                 "customerContact": {
-                                    "name": "张si",
+                                    "name": "张三",
                                     "province": "北京市",
                                     "city": "北京",
                                     "area": "东城区",
