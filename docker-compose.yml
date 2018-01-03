@@ -2,7 +2,7 @@ version: '2'
 
 services:
   dmall-order-service:
-    image: '${DMALL_DOCKER_REGISTRY}/dmall/order-service:${BUILD_NUMBER}'
+    image: '${DMALL_DOCKER_REGISTRY}/${GROUP_PATH}/order-service:${BUILD_NUMBER}'
     environment:
       - SPRING_PROFILES_ACTIVE=dev
     ports:

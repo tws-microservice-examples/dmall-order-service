@@ -6,8 +6,9 @@ pipeline {
     }
     
     environment {
-        DMALL_DOCKER_REGISTRY='ec2-52-80-144-157.cn-north-1.compute.amazonaws.com.cn:5000'
-        DEV_RANCHER_SERVER='http://ec2-54-222-228-139.cn-north-1.compute.amazonaws.com.cn:8080/v2-beta/projects/1a7'
+        GROUP_PATH='dmall-team-a'
+        DMALL_DOCKER_REGISTRY='52.80.144.157:5000'
+        DEV_RANCHER_SERVER='http://54.222.228.139:8080/v2-beta/projects/1a267'
     }
     
     stages {
