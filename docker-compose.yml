@@ -7,6 +7,7 @@ services:
       ACTIVE_PROFILE: dev
     ports:
       - "8084:8084"
+      - "12841:12841"
     external_links:
       - dmall-config-server/dmall-config-server:dmall-config-server
       - dmall-registry-server/dmall-registry-server:dmall-registry-server
