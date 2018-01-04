@@ -10,4 +10,4 @@
 *.iml
 *.iws
 .DS_Store
-
+.sts4-cache/
