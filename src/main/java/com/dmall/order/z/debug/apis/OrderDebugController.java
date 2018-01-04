@@ -5,7 +5,6 @@ import com.dmall.order.apis.common.HttpFacadeBaseClass;
 import com.dmall.order.apis.dto.OrderWithoutItemsDTO;
 import com.dmall.order.domain.model.query.OrderBrief;
 import com.dmall.order.domain.service.OrderQueryService;
-import com.dmall.order.z.debug.infrastructure.persistent.CustomerContactRepositoryDebug;
 import com.dmall.order.z.debug.infrastructure.persistent.OrderEventRepositoryDebug;
 import com.dmall.order.z.debug.infrastructure.persistent.OrderRepositoryDebug;
 import com.dmall.order.z.debug.infrastructure.persistent.SkuRepositoryDebug;
@@ -25,27 +24,22 @@ public class OrderDebugController extends HttpFacadeBaseClass {
     private OrderQueryService orderQueryService;
     private OrderRepositoryDebug orderRepositoryDebug;
     private SkuRepositoryDebug skuRepositoryDebug;
-    private CustomerContactRepositoryDebug customerContactRepository;
     private OrderEventRepositoryDebug orderEventRepositoryDebug;
 
     @Autowired
     public OrderDebugController(OrderQueryService orderQueryService,
                                 OrderRepositoryDebug orderRepositoryDebug,
                                 SkuRepositoryDebug skuRepositoryDebug,
-                                CustomerContactRepositoryDebug customerContactRepository,
                                 OrderEventRepositoryDebug orderEventRepositoryDebug) {
         this.orderQueryService = orderQueryService;
         this.orderRepositoryDebug = orderRepositoryDebug;
         this.skuRepositoryDebug = skuRepositoryDebug;
-        this.customerContactRepository = customerContactRepository;
         this.orderEventRepositoryDebug = orderEventRepositoryDebug;
     }
 
     @Transactional
     @GetMapping("/{id}")
     public ApiForResponse<OrderWithoutItemsDTO> findById(@PathVariable("id") final long id) {
-        System.out.println("all customerContact");
-        customerContactRepository.findAll().forEach(customerContact -> System.out.println("customer contact:"+ToStringBuilder.reflectionToString(customerContact)));
 
         System.out.println("all order,crrent param:"+id);
         orderRepositoryDebug.findAll().forEach(order -> {

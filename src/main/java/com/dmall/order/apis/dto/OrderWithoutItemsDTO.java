@@ -1,6 +1,7 @@
 package com.dmall.order.apis.dto;
 
 import com.dmall.order.domain.model.query.*;
+import com.dmall.order.z.debug.spike.domain.model.Contact;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -14,7 +15,7 @@ public class OrderWithoutItemsDTO {
     @JsonIgnore
     private Long id;
 
-    private CustomerContact customerContact;
+    private Contact customerContact;
 
     private String createdDate;
 
@@ -26,7 +27,7 @@ public class OrderWithoutItemsDTO {
 
     private String orderItems;
 
-    public CustomerContact getCustomerContact() {
+    public Contact getCustomerContact() {
         return customerContact;
     }
 

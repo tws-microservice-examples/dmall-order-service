@@ -2,6 +2,7 @@ package com.dmall.order.domain.model;
 
 import com.dmall.order.domain.common.DomainEntity;
 
+import com.dmall.order.z.debug.spike.domain.model.Contact;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -18,16 +19,16 @@ public class Order implements DomainEntity<Long> {
     @JsonIgnore
     private Long id;
 
-    public void setCustomerContact(CustomerContact customerContact) {
-        this.customerContact = customerContact;
+    public void setContactId(String contactId) {
+        this.contactId = contactId;
     }
 
     public void setOrderItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;
     }
 
-    @OneToOne(cascade=CascadeType.ALL, mappedBy = "order", fetch = FetchType.EAGER)
-    private CustomerContact customerContact;
+    @Column(name = "CONTACT_ID")
+    private String contactId;
 
     @OneToMany(cascade=CascadeType.ALL, mappedBy="order")
     private List<OrderItem> orderItems = new ArrayList<>();

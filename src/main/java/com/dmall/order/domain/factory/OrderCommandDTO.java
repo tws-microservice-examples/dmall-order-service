@@ -1,8 +1,8 @@
 package com.dmall.order.domain.factory;
 
 
-import com.dmall.order.domain.model.CustomerContact;
 import com.dmall.order.domain.model.OrderItem;
+import com.dmall.order.z.debug.spike.domain.model.Contact;
 
 import java.util.List;
 
@@ -18,14 +18,14 @@ public class OrderCommandDTO {
 
     List<OrderItem> orderItems;
 
-    private CustomerContact customerContact;
+    private String customerContactId;
 
 
-    public CustomerContact getCustomerContact() {
-        return customerContact;
+    public String getCustomerContactId() {
+        return customerContactId;
     }
 
-    public void setCustomerContact(CustomerContact customerContact) {
-        this.customerContact = customerContact;
+    public void setCustomerContactId(String customerContactId) {
+        this.customerContactId = customerContactId;
     }
 }

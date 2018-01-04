@@ -1,6 +1,7 @@
 package com.dmall.order.domain.model.query;
 
 import com.dmall.order.domain.common.DomainEntity;
+import com.dmall.order.z.debug.spike.domain.model.Contact;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -17,8 +18,9 @@ public class OrderBrief implements DomainEntity<Long> {
     @JsonIgnore
     private Long id;
 
-    @OneToOne(cascade=CascadeType.ALL, mappedBy = "order", fetch = FetchType.EAGER)
-    private CustomerContact customerContact;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="CONTACT_ID")
+    private Contact customerContact;
 
     @Transient
     private List<OrderItemRead> orderItemReads = new ArrayList<>();
@@ -56,7 +58,7 @@ public class OrderBrief implements DomainEntity<Long> {
         return orderItemReads;
     }
 
-    public CustomerContact getCustomerContact() {
+    public Contact getCustomerContact() {
         return customerContact;
     }
 

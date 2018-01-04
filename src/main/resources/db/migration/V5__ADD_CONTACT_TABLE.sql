@@ -1,6 +1,6 @@
-CREATE TABLE `jx_customer_contact` (
+CREATE TABLE `jx_contact` (
   `id`                 BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `ORDER_ID` BIGINT,
+  `USER_ID` BIGINT,
    `name`         VARCHAR(20)  NOT NULL,
   `province`     VARCHAR(20)  NOT NULL,
   `city`     VARCHAR(20)  NOT NULL,

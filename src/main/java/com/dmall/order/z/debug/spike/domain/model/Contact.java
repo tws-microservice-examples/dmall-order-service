@@ -1,11 +1,14 @@
 package com.dmall.order.z.debug.spike.domain.model;
 
+import com.dmall.order.domain.model.Order;
+import com.dmall.order.domain.model.query.OrderBrief;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
-//TODO: 思考题Contact能不能跟Order下的共用？
-@Table(name = "jx_customer_contact")
+
+@Table(name = "jx_contact")
 @Entity
 public class Contact  {
     @Id
@@ -45,6 +48,14 @@ public class Contact  {
     private String street;
     private String more_details;
 
+    @JsonIgnore
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name="USER_ID")
+    private User user;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "customerContact", fetch = FetchType.LAZY)
+    private List<OrderBrief> orders;
 
 
     public String getName() {
