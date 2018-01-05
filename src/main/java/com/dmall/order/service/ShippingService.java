@@ -15,10 +15,7 @@ public class ShippingService {
     @Autowired
     private RestTemplate restTemplate;
 
-    @HystrixCommand(fallbackMethod = "fallback", commandProperties = {
-        @HystrixProperty(name = "execution.isolation.strategy", value = "SEMAPHORE"),
-        @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "5"),
-        @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "5000")})
+    @HystrixCommand(fallbackMethod = "fallback")
     public Shipping getShippingDetail(String goodsId) {
         String url = String.format("http://shipping-service/goods/%s", goodsId);
         return restTemplate.getForObject(url, Shipping.class);
