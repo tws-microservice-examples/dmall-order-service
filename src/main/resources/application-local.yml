@@ -21,11 +21,15 @@ eureka:
   client:
     enabled: false
 
+feign:
+  hystrix:
+    enabled: true
+
 product-service:
   ribbon:
     listOfServers: localhost:8083
 
 
-inventory-service:
+shipping-service:
   ribbon:
-    listOfServers: localhost:8085
+    listOfServers: localhost:8081

@@ -5,6 +5,7 @@ services:
     image: '${DMALL_DOCKER_REGISTRY}/dmall/order-service:${BUILD_NUMBER}'
     environment:
       ACTIVE_PROFILE: dev
+    mem_reservation: 524288000
     ports:
       - "8084:8084"
       - "9841:12841"
