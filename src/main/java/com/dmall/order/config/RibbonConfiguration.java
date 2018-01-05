@@ -12,7 +12,7 @@ public class RibbonConfiguration {
     @Bean
     public IPing ribbonPing(final IClientConfig config) {
         // BOOT2: changed from /health to /application/health
-        return new PingUrl(false,"/application/health");
+        return new PingUrl(false,"/health");
     }
 
     @Bean
