@@ -2,6 +2,7 @@ package com.dmall.order.domain.order;
 
 
 import com.dmall.order.domain.common.ValueObject;
+import com.google.common.base.Objects;
 
 import javax.persistence.Embeddable;
 
@@ -46,5 +47,19 @@ public class Pet implements ValueObject<Pet> {
                 && other.petId.equals(petId);
     }
 
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        final Pet other = (Pet) o;
+        return sameValueAs(other);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getPrice(), getAmount(),
+                getPetId(), getDescription());
+    }
 }
