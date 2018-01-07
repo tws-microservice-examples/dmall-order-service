@@ -2,6 +2,7 @@ package com.dmall.order.service.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+//TODO: 这个对象，应该在哪？
 public class Product {
 
     public static final String JP_SKU = "sku";
