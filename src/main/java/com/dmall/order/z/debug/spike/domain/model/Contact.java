@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 //TODO: 思考题Contact能不能跟Order下的共用？
-@Table(name = "jx_customer_contact")
+@Table(name = "jx_contact")
 @Entity
-public class Contact  {
+public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonIgnore
@@ -45,7 +45,26 @@ public class Contact  {
     private String street;
     private String more_details;
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @JsonIgnore
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name="USER_ID")
+    private User user;
 
     public String getName() {
         return name;
