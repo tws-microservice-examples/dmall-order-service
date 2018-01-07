@@ -1,0 +1,1058 @@
+{
+	"info": {
+		"name": "dmall",
+		"_postman_id": "f02eda56-c14d-b397-7ced-0fba50923c9c",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "dmall-order",
+			"description": "",
+			"item": [
+				{
+					"name": "get a exist order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c3fd88a6-cff6-4b48-8d20-468dd530a04b",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is not failed\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"orderItems\": [{\n    \"skuSnapShot\":{\n      \"skuId\": 1\n    },\n    \"amount\":1\n  }],\n  \"customerContact\": {\n\"name\": \"李四\",\n\"province\": \"北京市\",\n\"city\": \"北京\",\n\"area\": \"东城区\",\n\"street\": \"东直门内大街\",\n\"more_details\": \"国华投资大厦1105室\",\n\"adress\": \"北京市北京东城区东直门内大街国华投资大厦1105室\"\n}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/v1/orders/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"1"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get the exist order brief",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7312ba5b-5d25-4e29-8710-d0a2469a7ec8",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is not failed\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"orderItems\": [{\n    \"skuSnapShot\":{\n      \"skuId\": 1\n    },\n    \"amount\":1\n  }],\n  \"customerContact\": {\n\"name\": \"李四\",\n\"province\": \"北京市\",\n\"city\": \"北京\",\n\"area\": \"东城区\",\n\"street\": \"东直门内大街\",\n\"more_details\": \"国华投资大厦1105室\",\n\"adress\": \"北京市北京东城区东直门内大街国华投资大厦1105室\"\n}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/v1/orderBriefs/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"orderBriefs",
+								"1"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "post a new orders success",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "22db1f27-3269-4e09-a9b1-f5e5fa562c06",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is not failed\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"orderItems\": [{\n    \"skuSnapShot\":{\n      \"skuId\": 6009907\n    },\n    \"amount\":1\n  }],\n  \"customerContact\": {\n\t\"name\": \"李四\",\n\t\"province\": \"北京市\",\n\t\"city\": \"北京\",\n\t\"area\": \"东城区\",\n\t\"street\": \"东直门内大街\",\n\t\"more_details\": \"国华投资大厦1105室\",\n\t\"adress\": \"北京市北京东城区东直门内大街国华投资大厦1105室\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/v1/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"orders"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get the new order which posted just now",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7312ba5b-5d25-4e29-8710-d0a2469a7ec8",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is not failed\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"orderItems\": [{\n    \"skuSnapShot\":{\n      \"skuId\": 1\n    },\n    \"amount\":1\n  }],\n  \"customerContact\": {\n\"name\": \"李四\",\n\"province\": \"北京市\",\n\"city\": \"北京\",\n\"area\": \"东城区\",\n\"street\": \"东直门内大街\",\n\"more_details\": \"国华投资大厦1105室\",\n\"adress\": \"北京市北京东城区东直门内大街国华投资大厦1105室\"\n}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/v1/orders/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"2"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "order items by pagenation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4383d4d2-3ac5-4823-a714-7c8dd59b578f",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is not failed\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"orderItems\": [{\n    \"skuSnapShot\":{\n      \"skuId\": 1\n    },\n    \"amount\":1\n  }],\n  \"customerContact\": {\n\"name\": \"李四\",\n\"province\": \"北京市\",\n\"city\": \"北京\",\n\"area\": \"东城区\",\n\"street\": \"东直门内大街\",\n\"more_details\": \"国华投资大厦1105室\",\n\"adress\": \"北京市北京东城区东直门内大街国华投资大厦1105室\"\n}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/v1/orders/1/orderItems?page=0&size=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"1",
+								"orderItems"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"equals": true
+								},
+								{
+									"key": "size",
+									"value": "2",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "pay order success",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ticketId\": 1,\n  \"ticketName\": \"PaymentRecord\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/v1/orders/1/events",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"1",
+								"events"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "cancel order success",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ticketId\": 1,\n  \"ticketName\": \"CancelAcceptedRecord\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/v1/orders/1/events",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"1",
+								"events"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "dmall-product",
+			"description": "",
+			"item": [
+				{
+					"name": "find product by skus in",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8083/products?skus=6009907&skus=6009901&skus=600990",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "skus",
+									"value": "6009907",
+									"equals": true
+								},
+								{
+									"key": "skus",
+									"value": "6009901",
+									"equals": true
+								},
+								{
+									"key": "skus",
+									"value": "600990",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "dmall-inventory-new",
+			"description": "",
+			"item": [
+				{
+					"name": "查询所有",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8085/inventories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"inventories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "查询",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8085/inventories/6009907",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"inventories",
+								"6009907"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "增加",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"sku\": \"6009901\",\n\t\"warehouse\": \"成都仓\",\n\t\"quantity\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8085/inventories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"inventories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "锁定-rest",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"quantity\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8085/inventories/6009907/lockEvents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"inventories",
+								"6009907",
+								"lockEvents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "锁定 非Rest",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"sku\": \"6009907\",\n\t\"quantity\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8085/inventories/lock",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"inventories",
+								"lock"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "释放",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"sku\": \"6009907\",\n\t\"quantity\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8085/inventories/unlock",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"inventories",
+								"unlock"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "扣减",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"sku\": \"6009907\",\n\t\"quantity\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8085/inventories/deduct",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"inventories",
+								"deduct"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user-legacy",
+			"description": "",
+			"item": [
+				{
+					"name": "exist user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is failed\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});",
+									""
+								],
+								"id": "cdf86a82-5da2-4eae-b70b-8c9668e71753",
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"orderItems\": [{\n    \"skuSnapShot\":{\n      \"skuId\": 1\n    },\n    \"amount\":1\n  }],\n  \"customerContact\": {\n\"name\": \"李四\",\n\"province\": \"北京市\",\n\"city\": \"北京\",\n\"area\": \"东城区\",\n\"street\": \"东直门内大街\",\n\"more_details\": \"国华投资大厦1105室\",\n\"adress\": \"北京市北京东城区东直门内大街国华投资大厦1105室\"\n}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/v1/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"1"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "create user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is failed\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});",
+									""
+								],
+								"id": "cdf86a82-5da2-4eae-b70b-8c9668e71753",
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"李四\",\n  \"roles\": [{\"name\": \"员工\"}]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "created user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is failed\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});",
+									""
+								],
+								"id": "cdf86a82-5da2-4eae-b70b-8c9668e71753",
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"orderItems\": [{\n    \"skuSnapShot\":{\n      \"skuId\": 1\n    },\n    \"amount\":1\n  }],\n  \"customerContact\": {\n\"name\": \"李四\",\n\"province\": \"北京市\",\n\"city\": \"北京\",\n\"area\": \"东城区\",\n\"street\": \"东直门内大街\",\n\"more_details\": \"国华投资大厦1105室\",\n\"adress\": \"北京市北京东城区东直门内大街国华投资大厦1105室\"\n}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/v1/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"1"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "create contact",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is failed\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});",
+									""
+								],
+								"id": "cdf86a82-5da2-4eae-b70b-8c9668e71753",
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"李四\",\n\t\"province\": \"北京市\",\n\t\"city\": \"北京\",\n\t\"area\": \"东城区\",\n\t\"street\": \"东直门内大街\",\n\t\"more_details\": \"国华投资大厦1105室\",\n\t\"adress\": \"北京市北京东城区东直门内大街国华投资大厦1105室\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/v1/users/1/contacts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"1",
+								"contacts"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user-new",
+			"description": "",
+			"item": [
+				{
+					"name": "exist user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is failed\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});",
+									""
+								],
+								"id": "cdf86a82-5da2-4eae-b70b-8c9668e71753",
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"orderItems\": [{\n    \"skuSnapShot\":{\n      \"skuId\": 1\n    },\n    \"amount\":1\n  }],\n  \"customerContact\": {\n\"name\": \"李四\",\n\"province\": \"北京市\",\n\"city\": \"北京\",\n\"area\": \"东城区\",\n\"street\": \"东直门内大街\",\n\"more_details\": \"国华投资大厦1105室\",\n\"adress\": \"北京市北京东城区东直门内大街国华投资大厦1105室\"\n}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/v1/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"1"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "exist user's contact",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is failed\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});",
+									""
+								],
+								"id": "cdf86a82-5da2-4eae-b70b-8c9668e71753",
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"orderItems\": [{\n    \"skuSnapShot\":{\n      \"skuId\": 1\n    },\n    \"amount\":1\n  }],\n  \"customerContact\": {\n\"name\": \"李四\",\n\"province\": \"北京市\",\n\"city\": \"北京\",\n\"area\": \"东城区\",\n\"street\": \"东直门内大街\",\n\"more_details\": \"国华投资大厦1105室\",\n\"adress\": \"北京市北京东城区东直门内大街国华投资大厦1105室\"\n}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/v1/users/1/contacts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"1",
+								"contacts"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "dmall-order-legacy",
+			"description": "",
+			"item": [
+				{
+					"name": "get a exist order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c3fd88a6-cff6-4b48-8d20-468dd530a04b",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is not failed\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"orderItems\": [{\n    \"skuSnapShot\":{\n      \"skuId\": 1\n    },\n    \"amount\":1\n  }],\n  \"customerContact\": {\n\"name\": \"李四\",\n\"province\": \"北京市\",\n\"city\": \"北京\",\n\"area\": \"东城区\",\n\"street\": \"东直门内大街\",\n\"more_details\": \"国华投资大厦1105室\",\n\"adress\": \"北京市北京东城区东直门内大街国华投资大厦1105室\"\n}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/v1/orders/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"1"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "post a new orders success",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "22db1f27-3269-4e09-a9b1-f5e5fa562c06",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is not failed\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"orderItems\": [{\n    \"skuSnapShot\":{\n      \"skuId\": 6009907\n    },\n    \"amount\":1\n  }],\n  \"customerContactId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/v1/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"orders"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "stub",
+			"description": "",
+			"item": [
+				{
+					"name": "inventory",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8    "
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://54.223.38.235:6085/inventories/6009907",
+							"protocol": "http",
+							"host": [
+								"54",
+								"223",
+								"38",
+								"235"
+							],
+							"port": "6085",
+							"path": [
+								"inventories",
+								"6009907"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
