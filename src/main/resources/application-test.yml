@@ -23,9 +23,9 @@ eureka:
 
 product-service:
   ribbon:
-    listOfServers: 52.80.155.55:6083
+    listOfServers: 54.223.38.235:6083,52.80.128.247:6083
 
 
 inventory-service:
   ribbon:
-    listOfServers: 52.80.155.55:6085
+    listOfServers: 54.223.38.235:6085,52.80.128.247:6085

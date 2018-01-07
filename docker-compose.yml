@@ -2,7 +2,7 @@ version: '2'
 
 services:
   dmall-order-service:
-    image: ec2-54-223-92-91.cn-north-1.compute.amazonaws.com.cn:5000/dmall/order-service:$BUILD_NUMBER
+    image: '${DMALL_DOCKER_REGISTRY}/${GROUP_PATH}/order-service:${BUILD_NUMBER}'
     environment:
       - SPRING_PROFILES_ACTIVE=dev
     ports:

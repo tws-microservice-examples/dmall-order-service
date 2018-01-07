@@ -1,6 +1,8 @@
 spring:
   application:
     name: order-service
+  profiles:
+    active: dev
   cloud:
     config:
       uri: http://dmall-config-server:8888
