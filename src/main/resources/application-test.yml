@@ -28,4 +28,4 @@ product-service:
 
 inventory-service:
   ribbon:
-    listOfServers: 54.223.38.235:6085,52.80.128.247:6085
+    listOfServers: 54.223.38.235:6082,52.80.128.247:6082

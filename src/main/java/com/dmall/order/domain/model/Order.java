@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Table(name = "jx_order")
 @Entity
@@ -66,4 +67,11 @@ public class Order implements DomainEntity<Long> {
         this.orderEvents.add(orderEvent);
     }
 
+    public boolean hasMoreThanOneSkuInOneOrder() {
+        return getOrderItems().stream()
+                .anyMatch(orderItem -> getOrderItems().stream()
+                        .filter(anyOrderItem -> anyOrderItem.getSkuSnapShot().getSkuId().equals(orderItem))
+                        .collect(Collectors.toList()).size()
+                        > 1);
+    }
 }

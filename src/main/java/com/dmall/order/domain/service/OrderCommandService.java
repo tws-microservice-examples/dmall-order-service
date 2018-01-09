@@ -9,8 +9,6 @@ import com.dmall.order.domain.model.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.stream.Collectors;
-
 @Service
 public class OrderCommandService {
     private OrderRepository orderRepository;
@@ -29,12 +27,7 @@ public class OrderCommandService {
 
     public Order submitOrder(OrderCommandDTO orderCommandDTO){
         Order order = orderFactory.createNewOrderEntity(orderCommandDTO);
-        boolean moreThanOneSkuInOneOrder = order.getOrderItems().stream()
-                .anyMatch(orderItem -> order.getOrderItems().stream()
-                        .filter(anyOrderItem -> anyOrderItem.getSkuSnapShot().getSkuId().equals(orderItem))
-                        .collect(Collectors.toList()).size()
-                        > 1);
-        if(moreThanOneSkuInOneOrder){
+        if(order.hasMoreThanOneSkuInOneOrder()){
             throw new RuntimeException();
         }
         return orderRepository.save(order);
