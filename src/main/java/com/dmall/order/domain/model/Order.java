@@ -39,6 +39,7 @@ public class Order implements DomainEntity<Long> {
     @OneToMany(cascade=CascadeType.ALL, mappedBy="order")
     private List<OrderEvent> orderEvents = new ArrayList<>();
 
+    //TODO: 不应该有setter，尤其值对象，一旦创建了不应该修改。因为对象是核心，而不是数据库
     public Order() {
     }
 
@@ -70,7 +71,7 @@ public class Order implements DomainEntity<Long> {
     public boolean hasMoreThanOneSkuInOneOrder() {
         return getOrderItems().stream()
                 .anyMatch(orderItem -> getOrderItems().stream()
-                        .filter(anyOrderItem -> anyOrderItem.getSkuSnapShot().getSkuId().equals(orderItem))
+                        .filter(anyOrderItem -> anyOrderItem.getSkuSnapShot().getSkuId().equals(orderItem.getSkuSnapShot().getSkuId()))
                         .collect(Collectors.toList()).size()
                         > 1);
     }
