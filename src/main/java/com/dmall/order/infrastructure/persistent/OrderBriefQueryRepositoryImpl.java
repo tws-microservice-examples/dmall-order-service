@@ -1,23 +1,43 @@
 package com.dmall.order.infrastructure.persistent;
 
 
+import com.dmall.order.domain.core.Page;
+import com.dmall.order.domain.core.Pageable;
+import com.dmall.order.domain.model.Order;
+import com.dmall.order.domain.model.OrderItem;
 import com.dmall.order.domain.model.query.*;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface OrderBriefQueryRepositoryImpl extends OrderBriefQueryRepository, JpaRepository<OrderBrief, Long> {
 
+@Repository
+public class OrderBriefQueryRepositoryImpl implements OrderBriefQueryRepository {
 
-    @Override
-    @Query("select oe from OrderEventRead oe where oe.order.id =?1")
-    List<OrderEventRead> findAllOrderEventsByOrderId(Long id);
+    private OrderRepositoryImpl orderRepository;
+
+    @Autowired
+    public OrderBriefQueryRepositoryImpl(OrderRepositoryImpl orderRepository) {
+        this.orderRepository = orderRepository;
+    }
 
     @Override
     @Query("select oe from OrderItemRead oe where oe.order.id =?1 ORDER BY oe.id DESC")
-    Page<OrderItemRead> findOrderItemsByOrderId(Long id, Pageable pageable);
+    public Page<OrderItem> findOrderItemsByOrderId(Long id, Pageable pageable) {
+        Order theOrder = orderRepository.getOrders().stream().filter(order -> order.getId() == id).findFirst().get();
+        List<OrderItem> orderItems = theOrder.getOrderItems();
+        return new Page<>(orderItems, pageable.getPage(), pageable.getSize(), orderItems.size());
+    }
+
+    @Override
+    public OrderBrief findOne(Long id) {
+        Order one = orderRepository.findOne(id);
+
+        OrderBrief result = OrderBriefBuilder.anOrderBrief().withId(one.getId()).withOrderItem(one.getOrderItems()).build();
+        result.apply(one.getOrderEvents());
+        return result;
+    }
 
 }

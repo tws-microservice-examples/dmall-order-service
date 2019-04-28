@@ -53,9 +53,6 @@ public class Contact  {
     @JoinColumn(name="USER_ID")
     private User user;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "customerContact", fetch = FetchType.LAZY)
-    private List<OrderBrief> orders;
 
 
     public String getName() {

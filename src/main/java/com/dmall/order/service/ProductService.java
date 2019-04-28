@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(name = "product-service", fallback = ProductServiceHystrixClientFallback.class)
 public interface ProductService {
 
 //    @RequestMapping("/products/{productId}")

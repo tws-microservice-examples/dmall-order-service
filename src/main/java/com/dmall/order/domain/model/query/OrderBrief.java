@@ -1,42 +1,30 @@
 package com.dmall.order.domain.model.query;
 
 import com.dmall.order.domain.common.DomainEntity;
-import com.dmall.order.z.debug.spike.domain.model.Contact;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.data.annotation.CreatedDate;
+import com.dmall.order.domain.model.OrderEvent;
+import com.dmall.order.domain.model.OrderItem;
+import com.dmall.order.domain.model.OrderStatus;
 
-import javax.persistence.*;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Table(name="jx_order")
-@Entity
 public class OrderBrief implements DomainEntity<Long> {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonIgnore
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="CONTACT_ID")
-    private Contact customerContact;
 
-    @Transient
-    private List<OrderItemRead> orderItemReads = new ArrayList<>();
+    private List<OrderItem> orderItemReads = new ArrayList<>();
 
-    @CreatedDate
     private ZonedDateTime createdDate = ZonedDateTime.now();
 
-    @Transient
-    private List<OrderEventRead> orderEventReads = new ArrayList<>();
+    private List<OrderEvent> orderEvents = new ArrayList<>();
 
     public OrderBrief() {
     }
 
 
-    public void apply(List<OrderEventRead> orderEventReads) {
-        this.orderEventReads = orderEventReads;
+    public void apply(List<OrderEvent> orderEvents) {
+        this.orderEvents = orderEvents;
     }
 
     @Override
@@ -54,22 +42,19 @@ public class OrderBrief implements DomainEntity<Long> {
     }
 
 
-    public List<OrderItemRead> getOrderItemReads() {
+    public List<OrderItem> getOrderItemReads() {
         return orderItemReads;
     }
 
-    public Contact getCustomerContact() {
-        return customerContact;
-    }
 
     public OrderStatus getStatus(){
-        OrderEventRead orderEventRead = this.orderEventReads.get(orderEventReads.size() - 1);
+        OrderEvent orderEvent = this.orderEvents.get(orderEvents.size() - 1);
 
-        return OrderStatus.getByOrderEvent(orderEventRead);
+        return OrderStatus.getByOrderEvent(orderEvent);
     }
 
 
-    public void setOrderItemReads(List<OrderItemRead> orderItemReads) {
+    public void setOrderItemReads(List<OrderItem> orderItemReads) {
         this.orderItemReads = orderItemReads;
     }
 

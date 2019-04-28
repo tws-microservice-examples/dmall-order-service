@@ -1,18 +1,17 @@
 package com.dmall.order.domain.model.query;
 
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+
+import com.dmall.order.domain.core.Page;
+import com.dmall.order.domain.core.Pageable;
+import com.dmall.order.domain.model.OrderItem;
 
 import java.util.List;
 
 public interface OrderBriefQueryRepository {
 
-    Page<OrderItemRead> findOrderItemsByOrderId(Long id, Pageable pageable);
-
-    Page<OrderBrief> findAll(Pageable pageable);
+    Page<OrderItem> findOrderItemsByOrderId(Long id, Pageable pageable);
 
     OrderBrief findOne(Long id);
 
-    List<OrderEventRead> findAllOrderEventsByOrderId(Long id);
 }

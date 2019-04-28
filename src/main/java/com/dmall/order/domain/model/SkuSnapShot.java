@@ -1,18 +1,11 @@
 package com.dmall.order.domain.model;
 
 import com.dmall.order.domain.common.ValueObject;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
 
 
-//TODO: 思考题：这回我就不问该不该合了，我问一个问题，这货跟Product是不是一个东西？这里面有哪些歧义？
-@Table(name="jx_sku_snapshot")
-@Entity
+
 public class SkuSnapShot implements ValueObject<SkuSnapShot> {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonIgnore
+
     private Long id;
 
     public void setSkuId(Long skuId) {
@@ -29,16 +22,13 @@ public class SkuSnapShot implements ValueObject<SkuSnapShot> {
         this.price = price;
     }
 
-    private double price;
-
-    public void setOrderItem(OrderItem orderItem) {
-        this.orderItem = orderItem;
+    public double getPrice() {
+        return price;
     }
 
-    @OneToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name="ORDER_ITEM_ID")
-    private OrderItem orderItem;
-    //
+    private double price;
+
+
 
     public SkuSnapShot(){
 

@@ -15,15 +15,13 @@ import java.util.stream.Collectors;
 public class OrderCommandService {
     private OrderRepository orderRepository;
     private OrderFactory orderFactory;
-    private OrderEventRepository orderEventRepository;
 
     @Autowired
     public OrderCommandService(OrderRepository orderRepository,
-                               OrderFactory orderFactory,
-                               OrderEventRepository orderEventRepository) {
+                               OrderFactory orderFactory) {
         this.orderRepository = orderRepository;
         this.orderFactory = orderFactory;
-        this.orderEventRepository = orderEventRepository;
+
     }
 
 
@@ -45,7 +43,7 @@ public class OrderCommandService {
         if (order == null) {
             throw new RuntimeException();
         }
-        orderEvent.setOrder(order);
-        orderEventRepository.save(orderEvent);
+        order.addEvent(orderEvent);
+        orderRepository.save(order);
     }
 }

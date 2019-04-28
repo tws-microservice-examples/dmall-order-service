@@ -4,16 +4,15 @@ import com.dmall.order.apis.common.ApiForResponse;
 import com.dmall.order.apis.common.HttpFacadeBaseClass;
 import com.dmall.order.apis.dto.OrderCreatedResponseDTO;
 import com.dmall.order.apis.services.OrderApplicationService;
+import com.dmall.order.domain.core.Page;
+import com.dmall.order.domain.core.Pageable;
 import com.dmall.order.domain.factory.OrderCommandDTO;
 import com.dmall.order.apis.dto.OrderWithoutItemsDTO;
 import com.dmall.order.domain.factory.OrderFactory;
 import com.dmall.order.domain.model.*;
 import com.dmall.order.domain.model.query.OrderBrief;
-import com.dmall.order.domain.model.query.OrderItemRead;
 import com.dmall.order.domain.service.OrderQueryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,7 +46,6 @@ public class OrderController extends HttpFacadeBaseClass {
     @GetMapping("/{id}")
     public ApiForResponse<OrderWithoutItemsDTO> findById(@PathVariable("id") final long id) {
 
-
         OrderBrief order = orderQueryService.findOrderBriefById(id);
 
         OrderWithoutItemsDTO orderWithoutItemsDTO = new OrderWithoutItemsDTO(order);
@@ -60,6 +58,7 @@ public class OrderController extends HttpFacadeBaseClass {
     @Transactional
     @PostMapping(path="",  produces = MediaType.APPLICATION_JSON_VALUE)
     public ApiForResponse<OrderCreatedResponseDTO> createOrder(@RequestBody OrderCommandDTO orderRequest) {
+        System.out.println("iam here" + orderRequest);
         Order savedOrder = orderApplicationService.submitOrder(orderRequest);
 
 
@@ -72,11 +71,12 @@ public class OrderController extends HttpFacadeBaseClass {
 
     @Transactional
     @GetMapping("/{id}/orderItems")
-    public ApiForResponse<List<OrderItemRead>> findItemsByOrderId(@PathVariable("id") final long id, Pageable pageable) {
+    public ApiForResponse<List<OrderItem>> findItemsByOrderId(@PathVariable("id") final long id, int page, int size) {
+        System.out.println("iam here order item");
 
-        Page<OrderItemRead> orderItems = orderQueryService.findAllItemsByOrder(id, pageable);
+        Page<OrderItem> orderItems = orderQueryService.findAllItemsByOrder(id, new Pageable(page, size));
 
-        ApiForResponse<List<OrderItemRead>> orderApiForResponse = new ApiForResponse<>(id, orderItems.getContent());
+        ApiForResponse<List<OrderItem>> orderApiForResponse = new ApiForResponse<>(id, orderItems.getResults());
         return orderApiForResponse;
     }
 

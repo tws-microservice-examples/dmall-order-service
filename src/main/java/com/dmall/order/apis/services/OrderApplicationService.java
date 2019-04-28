@@ -56,13 +56,13 @@ public class OrderApplicationService {
 
             ResponseEntity<Inventory> inventoryResponse = inventoryService.lockInventory(sku, new InventoryLockEventDTO(orderItem));
 
-            if (inventoryResponse == null) {
-                throw new RuntimeException("techinique Problem");
-            }
-
-            if (!inventoryResponse.getStatusCode().equals(HttpStatus.CREATED)) {
-                throw new RuntimeException("locked failed");
-            }
+//            if (inventoryResponse == null) {
+//                throw new RuntimeException("techinique Problem");
+//            }
+//
+//            if (!inventoryResponse.getStatusCode().equals(HttpStatus.CREATED)) {
+//                throw new RuntimeException("locked failed");
+//            }
 
         });
     }
@@ -72,16 +72,16 @@ public class OrderApplicationService {
 
         String[] skus = skuIds.toArray(new String[]{});
 
-        List<Product> prodcts = productService.findProdctsBySkuIn(skus);
-        System.out.println(ToStringBuilder.reflectionToString(prodcts));
+        //List<Product> prodcts = productService.findProdctsBySkuIn(skus);
+        //System.out.println(ToStringBuilder.reflectionToString(prodcts));
 
-        if(prodcts == null){
-            throw new RuntimeException("techinique problem");
-        }
-
-        if (prodcts.size() != skuIds.size()) {
-            throw new RuntimeException("security problem");
-        }
+//        if(prodcts == null){
+//            throw new RuntimeException("techinique problem");
+//        }
+//
+//        if (prodcts.size() != skuIds.size()) {
+//            throw new RuntimeException("security problem");
+//        }
     }
 
     public void postEvent(Long orderId, OrderEvent orderEvent) {

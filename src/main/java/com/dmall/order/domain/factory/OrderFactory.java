@@ -13,14 +13,10 @@ public class OrderFactory {
         result.setContactId(orderCommandDTO.getCustomerContactId());
 
         result.setOrderItems(orderCommandDTO.getOrderItems());
-        result.getOrderItems().stream().forEach(orderItem -> {
-            orderItem.setOrder(result);
-            orderItem.getSkuSnapShot().setOrderItem(orderItem);
-        });
+
 
         OrderEvent orderEvent = new OrderEvent();
         orderEvent.setName(OrderEvent.Values.CREATED.name());
-        orderEvent.setOrder(result);
         result.addEvent(orderEvent);
         return result;
     }
