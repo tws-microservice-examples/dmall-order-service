@@ -4,7 +4,6 @@ import com.dmall.order.domain.factory.OrderCommandDTO;
 import com.dmall.order.domain.factory.OrderFactory;
 import com.dmall.order.domain.model.Order;
 import com.dmall.order.domain.model.OrderEvent;
-import com.dmall.order.domain.model.OrderEventRepository;
 import com.dmall.order.domain.model.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +25,17 @@ public class OrderCommandService {
 
 
     public Order submitOrder(OrderCommandDTO orderCommandDTO){
-        Order order = orderFactory.createNewOrderEntity(orderCommandDTO);
+
+        Order result = new Order();
+        result.setContactId(orderCommandDTO.getCustomerContactId());
+
+        result.setOrderItems(orderCommandDTO.getOrderItems());
+
+
+        OrderEvent orderEvent = new OrderEvent();
+        orderEvent.setName(OrderEvent.Values.CREATED.name());
+        result.addEvent(orderEvent);
+        Order order = result;
         boolean moreThanOneSkuInOneOrder = order.getOrderItems().stream()
                 .anyMatch(orderItem -> order.getOrderItems().stream()
                         .filter(anyOrderItem -> anyOrderItem.getSkuSnapShot().getSkuId().equals(orderItem))

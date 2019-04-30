@@ -57,15 +57,24 @@ public class OrderController extends HttpFacadeBaseClass {
 
     @Transactional
     @PostMapping(path="",  produces = MediaType.APPLICATION_JSON_VALUE)
-    public ApiForResponse<OrderCreatedResponseDTO> createOrder(@RequestBody OrderCommandDTO orderRequest) {
+    public Map<String, Object> createOrder(@RequestBody OrderCommandDTO orderRequest) throws Exception {
         System.out.println("iam here" + orderRequest);
         Order savedOrder = orderApplicationService.submitOrder(orderRequest);
 
+        if (savedOrder == null) {
+            throw new Exception("不符合业务规则");
+        }
+        Map<String, Object> result = new HashMap<>();
 
-        OrderCreatedResponseDTO result = new OrderCreatedResponseDTO();
-        result.setUri(String.format("/orders/%d", savedOrder.getId()));
-        ApiForResponse<OrderCreatedResponseDTO> orderApiForResponse = new ApiForResponse<>(savedOrder.getId(), result);
-        return orderApiForResponse;
+        HashMap<String, Object> data = new HashMap<>();
+        data.put("id", savedOrder.getId());
+        HashMap<String, Object> attributes = new HashMap<>();
+        attributes.put("uri", String.format("/orders/%d", savedOrder.getId()));
+        data.put("attributes", attributes);
+
+        result.put("data", data);
+
+        return result;
     }
 
 
