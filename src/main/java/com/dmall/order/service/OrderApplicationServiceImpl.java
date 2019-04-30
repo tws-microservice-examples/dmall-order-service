@@ -22,6 +22,8 @@ public class OrderApplicationServiceImpl implements OrderApplicationService {
     private InventoryService inventoryService;
     private OrderFactory orderFactory;
 
+    private OrderCommandDTO orderCommandDTO;
+
 
     @Autowired
     public OrderApplicationServiceImpl(OrderCommandService orderCommandService,
@@ -43,7 +45,8 @@ public class OrderApplicationServiceImpl implements OrderApplicationService {
     public Order submitOrder(OrderCommandDTO orderCommandDTO){
         //TODO: 下面这两个业务该不该放到domain层？
         validSkuExist(orderCommandDTO);
-        lockInventory(orderCommandDTO);
+        this.orderCommandDTO = orderCommandDTO;
+        lockInventory();
 
         //TODO: 这里漏了一个业务，是什么？提示：价格应该用谁的？
 
@@ -69,7 +72,7 @@ public class OrderApplicationServiceImpl implements OrderApplicationService {
 
     }
 
-    private void lockInventory(OrderCommandDTO orderCommandDTO) {
+    private void lockInventory() {
         orderCommandDTO.getOrderItems().stream().forEach(orderItem -> {
 
             //TODO: 思考题，中间有一个锁定失败了怎么办？
