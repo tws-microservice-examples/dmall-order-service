@@ -1,6 +1,6 @@
-package com.dmall.order.domain.model;
+package com.dmall.order.model;
 
-import com.dmall.order.domain.common.ValueObject;
+import com.dmall.order.common.ValueObject;
 
 
 

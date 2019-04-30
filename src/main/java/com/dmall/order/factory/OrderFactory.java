@@ -1,8 +1,7 @@
-package com.dmall.order.domain.factory;
+package com.dmall.order.factory;
 
-import com.dmall.order.domain.model.Order;
-import com.dmall.order.domain.model.OrderEvent;
-import com.dmall.order.z.debug.spike.domain.model.Contact;
+import com.dmall.order.model.Order;
+import com.dmall.order.model.OrderEvent;
 import org.springframework.stereotype.Component;
 
 @Component

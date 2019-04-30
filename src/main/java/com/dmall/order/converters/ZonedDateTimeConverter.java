@@ -1,4 +1,4 @@
-package com.dmall.order.domain.converters;
+package com.dmall.order.converters;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

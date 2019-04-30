@@ -1,4 +1,4 @@
-package com.dmall.order.domain.common;
+package com.dmall.order.common;
 
 import java.io.Serializable;
 

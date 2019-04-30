@@ -1,8 +1,4 @@
-package com.dmall.order.domain.model;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
+package com.dmall.order.model;
 
 public class OrderEvent {
 

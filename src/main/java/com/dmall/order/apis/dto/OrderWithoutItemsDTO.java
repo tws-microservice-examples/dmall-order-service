@@ -1,7 +1,7 @@
 package com.dmall.order.apis.dto;
 
-import com.dmall.order.domain.model.OrderStatus;
-import com.dmall.order.domain.model.query.*;
+import com.dmall.order.model.OrderStatus;
+import com.dmall.order.model.query.*;
 import com.dmall.order.z.debug.spike.domain.model.Contact;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

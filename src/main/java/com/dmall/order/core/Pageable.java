@@ -1,4 +1,4 @@
-package com.dmall.order.domain.core;
+package com.dmall.order.core;
 
 public class Pageable {
 

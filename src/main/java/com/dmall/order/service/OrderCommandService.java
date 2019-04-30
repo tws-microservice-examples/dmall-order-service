@@ -1,10 +1,10 @@
-package com.dmall.order.domain.service;
+package com.dmall.order.service;
 
-import com.dmall.order.domain.factory.OrderCommandDTO;
-import com.dmall.order.domain.factory.OrderFactory;
-import com.dmall.order.domain.model.Order;
-import com.dmall.order.domain.model.OrderEvent;
-import com.dmall.order.domain.model.OrderRepository;
+import com.dmall.order.factory.OrderCommandDTO;
+import com.dmall.order.factory.OrderFactory;
+import com.dmall.order.model.Order;
+import com.dmall.order.model.OrderEvent;
+import com.dmall.order.model.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

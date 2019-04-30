@@ -1,11 +1,8 @@
 package com.dmall.order.z.debug.spike.domain.model;
 
-import com.dmall.order.domain.model.Order;
-import com.dmall.order.domain.model.query.OrderBrief;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.List;
 
 
 @Table(name = "jx_contact")

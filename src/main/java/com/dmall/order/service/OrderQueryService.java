@@ -1,13 +1,11 @@
-package com.dmall.order.domain.service;
+package com.dmall.order.service;
 
-import com.dmall.order.domain.core.Page;
-import com.dmall.order.domain.core.Pageable;
-import com.dmall.order.domain.model.OrderItem;
-import com.dmall.order.domain.model.query.*;
+import com.dmall.order.core.Page;
+import com.dmall.order.core.Pageable;
+import com.dmall.order.model.OrderItem;
+import com.dmall.order.model.query.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class OrderQueryService {

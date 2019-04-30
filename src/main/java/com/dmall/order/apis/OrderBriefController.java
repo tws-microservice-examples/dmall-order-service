@@ -2,15 +2,13 @@ package com.dmall.order.apis;
 
 import com.dmall.order.apis.common.ApiForResponse;
 import com.dmall.order.apis.common.HttpFacadeBaseClass;
-import com.dmall.order.domain.model.query.*;
-import com.dmall.order.domain.service.OrderQueryService;
+import com.dmall.order.model.query.*;
+import com.dmall.order.service.OrderQueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/orderBriefs")

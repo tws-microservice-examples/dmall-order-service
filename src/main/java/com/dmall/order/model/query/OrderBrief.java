@@ -1,9 +1,9 @@
-package com.dmall.order.domain.model.query;
+package com.dmall.order.model.query;
 
-import com.dmall.order.domain.common.DomainEntity;
-import com.dmall.order.domain.model.OrderEvent;
-import com.dmall.order.domain.model.OrderItem;
-import com.dmall.order.domain.model.OrderStatus;
+import com.dmall.order.common.DomainEntity;
+import com.dmall.order.model.OrderEvent;
+import com.dmall.order.model.OrderItem;
+import com.dmall.order.model.OrderStatus;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;

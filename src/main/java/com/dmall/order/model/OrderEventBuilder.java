@@ -1,4 +1,4 @@
-package com.dmall.order.domain.model;
+package com.dmall.order.model;
 
 public final class OrderEventBuilder {
   private String name;

@@ -1,6 +1,6 @@
 package com.dmall.order.service.dto;
 
-import com.dmall.order.domain.model.OrderItem;
+import com.dmall.order.model.OrderItem;
 
 public class InventoryLockEventDTO {
 

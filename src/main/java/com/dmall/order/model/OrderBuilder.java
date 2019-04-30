@@ -1,4 +1,4 @@
-package com.dmall.order.domain.model;
+package com.dmall.order.model;
 
 import java.util.ArrayList;
 import java.util.List;

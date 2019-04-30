@@ -1,15 +1,8 @@
 package com.dmall.order.infrastructure.persistent;
 
-import com.dmall.order.domain.model.*;
-import com.google.common.collect.Lists;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
+import com.dmall.order.model.*;
 import org.springframework.stereotype.Repository;
 
-import javax.transaction.Transactional;
-import javax.xml.ws.soap.Addressing;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

@@ -1,8 +1,7 @@
-package com.dmall.order.domain.factory;
+package com.dmall.order.factory;
 
 
-import com.dmall.order.domain.model.OrderItem;
-import com.dmall.order.z.debug.spike.domain.model.Contact;
+import com.dmall.order.model.OrderItem;
 
 import java.util.List;
 

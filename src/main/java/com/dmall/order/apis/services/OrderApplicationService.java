@@ -1,8 +1,8 @@
 package com.dmall.order.apis.services;
 
-import com.dmall.order.domain.factory.OrderCommandDTO;
-import com.dmall.order.domain.model.Order;
-import com.dmall.order.domain.model.OrderEvent;
+import com.dmall.order.factory.OrderCommandDTO;
+import com.dmall.order.model.Order;
+import com.dmall.order.model.OrderEvent;
 import org.springframework.stereotype.Service;
 
 @Service

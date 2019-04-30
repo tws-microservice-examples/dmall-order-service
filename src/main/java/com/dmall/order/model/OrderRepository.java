@@ -1,4 +1,4 @@
-package com.dmall.order.domain.model;
+package com.dmall.order.model;
 
 public interface OrderRepository {
     Order findOne(Long id);
