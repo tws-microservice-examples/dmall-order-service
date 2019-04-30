@@ -1,4 +1,4 @@
-package com.dmall.order.apis.services;
+package com.dmall.order.service;
 
 import com.dmall.order.factory.OrderCommandDTO;
 import com.dmall.order.model.Order;
