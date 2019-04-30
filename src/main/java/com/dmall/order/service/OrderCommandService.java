@@ -8,6 +8,7 @@ import com.dmall.order.model.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,7 +35,7 @@ public class OrderCommandService {
 
         OrderEvent orderEvent = new OrderEvent();
         orderEvent.setName(OrderEvent.Values.CREATED.name());
-        result.addEvent(orderEvent);
+        addEvent(result, orderEvent);
         Order order = result;
         boolean moreThanOneSkuInOneOrder = order.getOrderItems().stream()
                 .anyMatch(orderItem -> order.getOrderItems().stream()
@@ -47,12 +48,17 @@ public class OrderCommandService {
         return orderRepository.save(order);
     }
 
+    private void addEvent(Order result, OrderEvent orderEvent) {
+        List<OrderEvent> orderEvents = result.getOrderEvents();
+        orderEvents.add(orderEvent);
+    }
+
     public void postEvent(Long orderId, OrderEvent orderEvent) {
         Order order = orderRepository.findOne(orderId);
         if (order == null) {
             throw new RuntimeException();
         }
-        order.addEvent(orderEvent);
+        addEvent(order, orderEvent);
         orderRepository.save(order);
     }
 }

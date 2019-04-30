@@ -4,6 +4,8 @@ import com.dmall.order.model.Order;
 import com.dmall.order.model.OrderEvent;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class OrderFactory {
     public Order createNewOrderEntity(OrderCommandDTO orderCommandDTO){
@@ -16,7 +18,13 @@ public class OrderFactory {
 
         OrderEvent orderEvent = new OrderEvent();
         orderEvent.setName(OrderEvent.Values.CREATED.name());
-        result.addEvent(orderEvent);
+        addEvent(result, orderEvent);
         return result;
     }
+
+    private void addEvent(Order result, OrderEvent orderEvent) {
+        List<OrderEvent> orderEvents = result.getOrderEvents();
+        orderEvents.add(orderEvent);
+    }
+
 }

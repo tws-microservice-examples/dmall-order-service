@@ -57,7 +57,7 @@ public class OrderApplicationServiceImpl implements OrderApplicationService {
 
         OrderEvent orderEvent = new OrderEvent();
         orderEvent.setName("CREATED");
-        result.addEvent(orderEvent);
+        addEvent(result, orderEvent);
         Order order = result;
         boolean moreThanOneSkuInOneOrder = order.getOrderItems().stream()
                 .anyMatch(orderItem -> order.getOrderItems().stream()
@@ -70,6 +70,11 @@ public class OrderApplicationServiceImpl implements OrderApplicationService {
         Order createdOrder = orderRepository.save(order);
         return createdOrder;
 
+    }
+
+    private void addEvent(Order result, OrderEvent orderEvent) {
+        List<OrderEvent> orderEvents = result.getOrderEvents();
+        orderEvents.add(orderEvent);
     }
 
     private void lockInventory() {

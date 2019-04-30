@@ -1,14 +1,12 @@
 package com.dmall.order.model;
 
-import com.dmall.order.common.DomainEntity;
-
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Order implements DomainEntity<Long> {
+public class Order {
 
     private Long id;
 
@@ -36,7 +34,6 @@ public class Order implements DomainEntity<Long> {
     }
 
 
-    @Override
     public Long getId() {
         return id;
     }
@@ -45,19 +42,11 @@ public class Order implements DomainEntity<Long> {
         this.id = id;
     }
 
-    @Override
-    public boolean sameIdentityAs(Long otherId) {
-        return this.id.equals(otherId);
-    }
 
 
     public List<OrderItem> getOrderItems() {
         return orderItems;
     }
 
-
-    public void addEvent(OrderEvent orderEvent) {
-        this.orderEvents.add(orderEvent);
-    }
 
 }

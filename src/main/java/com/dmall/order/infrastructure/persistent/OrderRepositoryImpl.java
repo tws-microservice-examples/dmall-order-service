@@ -29,7 +29,7 @@ public class OrderRepositoryImpl implements OrderRepository {
     long id = ++idCounter;
     Order order = OrderBuilder.anOrder().withOrderItems(orderItems).withContactId("1").withId(id).build();
 
-    order.addEvent(OrderEventBuilder.anOrderEvent().withName(OrderEvent.Values.CREATED.name()).build());
+    addEvent(order, OrderEventBuilder.anOrderEvent().withName(OrderEvent.Values.CREATED.name()).build());
 
     orders.add(order);
   }
@@ -51,5 +51,9 @@ public class OrderRepositoryImpl implements OrderRepository {
     }
     return order;
   }
-
+  
+  private void addEvent(Order result, OrderEvent orderEvent) {
+    List<OrderEvent> orderEvents = result.getOrderEvents();
+    orderEvents.add(orderEvent);
+  }
 }

@@ -1,6 +1,5 @@
 package com.dmall.order.model.query;
 
-import com.dmall.order.common.DomainEntity;
 import com.dmall.order.model.OrderEvent;
 import com.dmall.order.model.OrderItem;
 import com.dmall.order.model.OrderStatus;
@@ -9,7 +8,7 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderBrief implements DomainEntity<Long> {
+public class OrderBrief {
     private Long id;
 
 
@@ -27,7 +26,6 @@ public class OrderBrief implements DomainEntity<Long> {
         this.orderEvents = orderEvents;
     }
 
-    @Override
     public Long getId() {
         return id;
     }
@@ -35,12 +33,6 @@ public class OrderBrief implements DomainEntity<Long> {
     public void setId(Long id) {
         this.id = id;
     }
-
-    @Override
-    public boolean sameIdentityAs(Long otherId) {
-        return this.id.equals(otherId);
-    }
-
 
     public List<OrderItem> getOrderItemReads() {
         return orderItemReads;
