@@ -1,8 +1,0 @@
-CREATE TABLE `jx_order_event` (
-  `id`                 BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `ORDER_ID` BIGINT,
-  `TICKET_ID`  BIGINT,
-  `TICKET_NAME` VARCHAR(100),
-  `name` VARCHAR(100)  NOT NULL,
-  `created_date` TIMESTAMP DEFAULT NOW()
-);

@@ -1,1 +1,0 @@
-insert into jx_order(CONTACT_ID) values(1)

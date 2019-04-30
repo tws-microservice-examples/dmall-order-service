@@ -11,3 +11,4 @@
 *.iws
 .DS_Store
 merge.sh
+/out
