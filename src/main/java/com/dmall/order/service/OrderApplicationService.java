@@ -7,8 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface OrderApplicationService {
-  //TODO: 思考题：application service 和domain service职责上怎么划分
-  //       Order如果复杂化会怎么复杂？
+
   Order submitOrder(OrderCommandDTO orderCommandDTO);
 
   void postEvent(Long orderId, OrderEvent orderEvent);

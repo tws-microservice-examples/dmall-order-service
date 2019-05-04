@@ -1,15 +1,16 @@
 package com.dmall.order.apis.dto;
 
+import com.dmall.order.model.Contract;
 import com.dmall.order.model.OrderStatus;
 import com.dmall.order.model.query.*;
-import com.dmall.order.z.debug.spike.domain.model.Contact;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class OrderWithoutItemsDTO {
     @JsonIgnore
     private Long id;
 
-    private Contact customerContact;
+    private Contract customerContact;
 
     private String createdDate;
 
@@ -21,7 +22,7 @@ public class OrderWithoutItemsDTO {
 
     private String orderItems;
 
-    public Contact getCustomerContact() {
+    public Contract getCustomerContact() {
         return customerContact;
     }
 

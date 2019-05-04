@@ -39,34 +39,41 @@ public class OrderApplicationServiceImpl implements OrderApplicationService {
 
     }
 
-//TODO: 思考题：application service 和domain service职责上怎么划分
-//       Order如果复杂化会怎么复杂？
+    //提交数据
     @Override
     public Order submitOrder(OrderCommandDTO orderCommandDTO){
-        //TODO: 下面这两个业务该不该放到domain层？
-        validSkuExist(orderCommandDTO);
+        //校验数据合法性
+        validSku(orderCommandDTO);
         this.orderCommandDTO = orderCommandDTO;
-        lockInventory();
+        dealWithInventory();
 
-        //TODO: 这里漏了一个业务，是什么？提示：价格应该用谁的？
 
+        //创建基础对象，初始化数据
         Order result = new Order();
         result.setContactId(orderCommandDTO.getCustomerContactId());
-
         result.setOrderItems(orderCommandDTO.getOrderItems());
-
+        /* 添加更多细节 */
         OrderEvent orderEvent = new OrderEvent();
         orderEvent.setName("CREATED");
         addEvent(result, orderEvent);
+
+    /*    List<OrderEvent> orderEvents = result.getOrderEvents();
+        orderEvents.add(orderEvent);
+*/
+        //校验业务合法性
         Order order = result;
-        boolean moreThanOneSkuInOneOrder = order.getOrderItems().stream()
-                .anyMatch(orderItem -> order.getOrderItems().stream()
-                        .filter(anyOrderItem -> anyOrderItem.getSkuSnapShot().getSkuId().equals(orderItem))
+        boolean flag = order.getOrderItems().stream()
+                .anyMatch(i -> order
+                        .getOrderItems().stream()
+                        .filter(j -> j.getSkuSnapShot()
+                        .getSkuId().equals(i))
                         .collect(Collectors.toList()).size()
                         > 1);
-        if(moreThanOneSkuInOneOrder){
+        if(flag){
             return null;
         }
+
+        //存储
         Order createdOrder = orderRepository.save(order);
         return createdOrder;
 
@@ -77,10 +84,10 @@ public class OrderApplicationServiceImpl implements OrderApplicationService {
         orderEvents.add(orderEvent);
     }
 
-    private void lockInventory() {
+    private void dealWithInventory() {
         orderCommandDTO.getOrderItems().stream().forEach(orderItem -> {
 
-            //TODO: 思考题，中间有一个锁定失败了怎么办？
+
             String sku = orderItem.getSkuSnapShot().getSkuId().toString();
 
             ResponseEntity<Inventory> inventoryResponse = inventoryService.lockInventory(sku, new InventoryLockEventDTO(orderItem));
@@ -96,7 +103,7 @@ public class OrderApplicationServiceImpl implements OrderApplicationService {
         });
     }
 
-    private void validSkuExist(OrderCommandDTO orderCommandDTO) {
+    private void validSku(OrderCommandDTO orderCommandDTO) {
         List<String> skuIds = orderCommandDTO.getOrderItems().stream().map(orderItem -> orderItem.getSkuSnapShot().getSkuId().toString()).collect(Collectors.toList());
 
         String[] skus = skuIds.toArray(new String[]{});
@@ -115,7 +122,6 @@ public class OrderApplicationServiceImpl implements OrderApplicationService {
 
     @Override
     public void postEvent(Long orderId, OrderEvent orderEvent) {
-        //TODO: 这段逻辑到底在哪比较合适？还有没有其他的处理方法？优缺点是什么？
         if(orderEvent.getTicketName().equals("PaymentRecord")){
             orderEvent.setName(OrderEvent.Values.PAID.name());
         }
@@ -123,8 +129,6 @@ public class OrderApplicationServiceImpl implements OrderApplicationService {
         if(orderEvent.getTicketName().equals("CancelAcceptRecord")){
             orderEvent.setName(OrderEvent.Values.CANCEL.name());
         }
-        //TODO: 什么是domain级别应该关心的业务？提示：事件之间是不是逻辑关系？
         orderCommandService.postEvent(orderId, orderEvent);
-        //TODO: 这里还缺一些业务，缺了什么？有几种处理方式？
     }
 }
